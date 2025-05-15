@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.card {
+  color: #ffddab !important;
+  background-color: #6b502c !important;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.card-footer {
+  margin-top: auto;
+}
+.card-footer .btn {
+  background-color: #11c001;
+  border: none;
+}
+.card-footer .btn:hover {
+  animation: vibrar 0.5s ease;
+  background-color: #11c001;
+}
+@keyframes vibrar {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.card img {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card-text {
+  margin: 0;
+  padding: 0;
+}
+.card-price {
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+  color: #ffb445;
+  opacity: 90%;
+}
+.card-price-puntos {
+  color: #ffb445;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  border-radius: 15px;
+}
+.card-price-puntos img {
+  animation: girar3d 6s linear infinite;
+}
+.card-container {
+  margin-top: 5rem !important;
+}
+
+.puntos {
+  border: 2px solid #6b502c;
+  color: #6b502c;
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: auto;
+  background-color: transparent;
+  perspective: 1000px;
+  gap: 1.5rem;
+}
+
+.puntos img {
+  width: 40px;
+  height: 40px;
+  animation: girar3d 6s linear infinite;
+}
+
+@keyframes girar3d {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+.puntos p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}/*# sourceMappingURL=productos.css.map */

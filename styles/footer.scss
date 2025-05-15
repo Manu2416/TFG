@@ -1,0 +1,27 @@
+@use "__variables" as *;
+
+.pie {
+  background-color: $primary-color !important;
+  margin: 0;
+  color: $secondary-color;
+
+
+  &-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .link {
+    color: $secondary-color;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease, color 0.3s ease;
+    &:hover {
+      border-bottom: 2px solid $hover-color;
+    }
+  }
+}

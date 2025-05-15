@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.navbar {
+  background-color: #6b502c;
+  display: flex;
+  width: 100%;
+  font-family: "Righteous", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+.navbar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.navbar-brand {
+  height: 100%;
+}
+.navbar-brand img {
+  height: 4rem;
+  width: 4rem;
+}
+.navbar-nav {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+.navbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffddab;
+  padding: 0.5rem;
+  height: 100%;
+  border-bottom: 2px solid transparent;
+}
+.navbar-button:hover {
+  border-bottom: 2px #11c001 solid;
+}
+
+.nav-link {
+  color: #ffddab !important;
+  border-bottom: 2px solid transparent !important;
+  transition: border-bottom 0.3s ease, color 0.3s ease;
+}
+.nav-link:hover {
+  border-bottom: 2px #11c001 solid !important;
+}
+
+.offcanvas {
+  background-color: #6b502c !important;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  background-color: #6b502c !important;
+}
+.dropdown-menu .dropdown-item {
+  color: #ffddab;
+  margin-top: 0.25rem;
+}
+.dropdown-menu .dropdown-item:hover {
+  background-color: #11c001;
+  color: #ffddab;
+}
+@media (max-width: 768px) {
+  .dropdown-menu {
+    background-color: #ffddab !important;
+  }
+  .dropdown-menu .dropdown-item {
+    color: #6b502c;
+  }
+}/*# sourceMappingURL=navbar.css.map */

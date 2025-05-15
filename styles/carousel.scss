@@ -1,0 +1,138 @@
+@use "__variables" as *;
+
+.title-accesorio {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  font-size: 2.5rem;
+  color: $primary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.slick-track,
+.slick-list {
+  height: 100%;
+}
+
+.slick-slide {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.85);
+  transition: transform 0.5s ease-in-out;
+  padding: 0;
+  opacity: 0.5;
+}
+
+.slick-center {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.slider {
+  position: relative;
+  height: 35rem;
+  padding-bottom: 60px;
+
+  .slider-item {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    backdrop-filter: brightness(0.9) blur(1px);
+
+    &--1 {
+      background-image: url(../images/packs.jpg);
+    }
+
+    &--2 {
+      background-image: url(../images/cafe.jpg);
+    }
+
+    &--3 {
+      background-image: url(../images/accesorio.jpg);
+    }
+
+    &--4 {
+      background-image: url(../images/accesorio.jpg);
+    }
+
+    h2 {
+      color: $primary-color;
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #f4f4f4;
+      max-width: 90%;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .btn-comprar {
+      background-color: $hover-color;
+      padding: 0.8rem 2rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      opacity: 0.9;
+
+      &:hover {
+        background-color: darken($hover-color, 10%);
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .title-accesorio {
+    font-size: 1.6rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .slider {
+    height: auto;
+
+    .slider-item {
+      padding: 1.5rem 1rem;
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .btn-comprar {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.5rem;
+      }
+    }
+  }
+}
+

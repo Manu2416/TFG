@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.pie {
+  background-color: #6b502c !important;
+  margin: 0;
+  color: #ffddab;
+}
+.pie-box {
+  display: flex;
+  flex-direction: row;
+}
+.pie-section {
+  display: flex;
+  flex-direction: column;
+}
+.pie .link {
+  color: #ffddab;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease, color 0.3s ease;
+}
+.pie .link:hover {
+  border-bottom: 2px solid #11c001;
+}/*# sourceMappingURL=footer.css.map */

@@ -1,0 +1,106 @@
+@use "__variables" as *;
+
+.card {
+  color: $secondary-color !important;
+  background-color: $primary-color !important;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  gap: 1rem;
+ 
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &-footer {
+    margin-top: auto;
+    
+    .btn {
+      background-color: $hover-color;
+      border: none;
+
+      &:hover {
+        animation: vibrar 0.5s ease ;
+        background-color: $hover-color;
+      
+      }
+      @keyframes vibrar {
+        0%   { transform: translateX(0); }
+        20%  { transform: translateX(-2px); }
+        40%  { transform: translateX(2px); }
+        60%  { transform: translateX(-2px); }
+        80%  { transform: translateX(2px); }
+        100% { transform: translateX(0); }
+      }
+    }
+  }
+
+  
+  img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover;
+   
+  }
+  &-text{
+    margin: 0;
+    padding: 0;
+  }
+  &-price{
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    color: darken($secondary-color, 20%);
+    opacity: 90%;
+    &-puntos{
+        color:darken($secondary-color, 20%);
+        margin-left: 5rem;
+        margin-right: 5rem;
+        border-radius: 15px;
+        img{
+            animation: girar3d 6s linear infinite;
+        }
+    }
+  }
+  &-container{
+    margin-top: 5rem !important;
+  }
+}
+.puntos {
+    border: 2px solid $primary-color;
+    color: $primary-color;
+    padding: 10px;
+    display: inline-flex;  
+    align-items: center;
+    border-radius: 10px;
+    margin-top: auto;
+    background-color: transparent;
+    perspective: 1000px;
+    gap: 1.5rem;
+}
+
+.puntos img {
+    width: 40px;
+    height: 40px;
+    animation: girar3d 6s linear infinite;
+}
+
+@keyframes girar3d {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.puntos p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}

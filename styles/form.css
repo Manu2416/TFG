@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.container-form {
+  width: 40%;
+  height: 100%;
+  padding-top: 3rem;
+}
+@media (max-width: 768px) {
+  .container-form {
+    width: 80%;
+    padding-top: 2rem;
+  }
+}
+
+.form {
+  padding: 3rem;
+  background-color: #6b502c;
+}
+@media (max-width: 768px) {
+  .form {
+    padding: 1.5rem;
+  }
+}
+.form-title {
+  color: #6b502c;
+  font-weight: bold;
+}
+.form-registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+}
+.form-label {
+  color: #6b502c;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.form-control {
+  color: #6b502c;
+  max-width: 500px;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  border: 2px solid #6b502c !important;
+  background: none !important;
+}
+.form-control--last {
+  margin-bottom: 0;
+}
+.form-control:active {
+  background: none;
+  border: 2px solid #11c001 !important;
+  box-shadow: 0 2px 5px #11c001 !important;
+}
+.form-control:focus {
+  border: 2px solid #11c001 !important;
+  background: none !important;
+  box-shadow: 0 2px 5px #11c001 !important;
+}
+.form-control:hover {
+  border: 2px solid #11c001 !important;
+  background: none !important;
+}
+.form-btn {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 15px;
+  background-color: #6b502c;
+  color: #ffddab;
+  border: 2px solid transparent !important;
+  font-size: 1.5rem;
+  border: none;
+}
+.form-btn:hover {
+  color: #11c001;
+  border: 2px solid #11c001 !important;
+  box-shadow: 0 2px 5px #11c001 !important;
+}
+.form-btn:focus {
+  border: 2px solid #11c001 !important;
+  box-shadow: 0 2px 5px #11c001 !important;
+}
+.form-text {
+  padding-bottom: 1rem;
+  height: 3rem;
+  font-size: 2rem;
+  color: #6b502c;
+}
+.form-text--link {
+  text-decoration: none;
+}
+.form-text--link:hover {
+  text-decoration: underline;
+  color: #11c001;
+}
+
+.modal {
+  background-color: #6b502c !important;
+}
+.modal-content {
+  background-color: #ffddab !important;
+  color: #6b502c !important;
+}
+.modal-header {
+  border-bottom: 2px solid #11c001 !important;
+}
+.modal-footer {
+  border-top: 2px solid #11c001 !important;
+}
+.modal-close {
+  color: #ffddab !important;
+}/*# sourceMappingURL=form.css.map */

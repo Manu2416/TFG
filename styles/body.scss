@@ -1,0 +1,63 @@
+@use "__variables" as *;
+
+
+body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: $secondary-color !important;
+  display: flex;          
+  flex-direction: column; 
+  min-height: 100vh;      
+  font-family: $primary-font !important;
+  font-weight: 200 !important;
+  font-style: normal !important;
+}
+main{
+  flex: 1;
+}
+.banner {
+  width: 100%;
+  background-color: rgb(14, 44, 14);
+
+  overflow: hidden; 
+  position: relative;
+
+
+  &-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 182s linear infinite;
+  }
+
+  &-text {
+  
+    margin: 0;
+    padding: 0.5rem;
+    color: $hover-color;
+    display: inline-block;
+    margin-left: 14rem;
+    font-size: 1.2rem;
+  }
+
+}
+@keyframes scroll-left {
+  0% {
+    transform: translateX(-50%); 
+  }
+  100% {
+    transform: translateX(100%); 
+  }
+}
+
+.banner.paused .banner-track {
+  animation-play-state: paused;
+}
+
+
+
+
+
+
+
+

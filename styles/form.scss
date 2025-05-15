@@ -1,0 +1,134 @@
+@use "__variables" as *;
+
+.container-form {
+    width: 40%;
+    height: 100%;
+    padding-top: 3rem;
+
+    @media (max-width: 768px) {
+        width: 80%; 
+        padding-top: 2rem;  
+    }
+}
+
+.form {
+    padding: 3rem;
+    background-color: $primary-color;
+   
+    
+    @media (max-width: 768px) {
+        padding: 1.5rem; 
+    }
+
+    &-title {
+        color: $primary-color; 
+        font-weight: bold;
+    }
+
+    &-registro {
+        display: flex;
+        flex-direction: column;  
+        align-items: center;  
+        justify-content: center;
+        width: 100%;  
+        padding: 2rem;
+    }
+
+    &-label {
+        color: $primary-color;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &-control {
+        color: $primary-color;
+        max-width: 500px;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        border: 2px solid $primary-color !important;
+        background: none  !important;
+        
+        &--last {
+            margin-bottom: 0;
+        }
+
+        &:active {
+            background: none;
+            border: 2px solid $hover-color  !important;
+            box-shadow: 0 2px 5px $hover-color  !important; 
+        }
+
+        &:focus {
+            border: 2px solid $hover-color  !important;
+            background: none  !important;
+            box-shadow: 0 2px 5px $hover-color  !important;
+        }
+
+        &:hover {
+            border: 2px solid $hover-color  !important;
+            background: none  !important;
+        }
+    }
+
+    &-btn {
+        max-width: 500px;
+        width: 100%;
+        border-radius: 15px;
+        background-color: $primary-color;
+        color: $secondary-color;
+        border: 2px solid transparent !important;
+        font-size: 1.5rem;
+        border: none;
+      
+
+        &:hover {
+            color: $hover-color;
+            border: 2px solid $hover-color  !important;
+            box-shadow: 0 2px 5px $hover-color  !important; 
+        }
+        &:focus {
+            border: 2px solid $hover-color  !important;
+            box-shadow: 0 2px 5px $hover-color  !important;
+        }
+
+        
+    }
+    &-text {
+        padding-bottom: 1rem;
+        height: 3rem;
+        font-size: 2rem;
+        
+        color: $primary-color;
+        
+        &--link {
+            text-decoration: none;  
+            &:hover {
+                text-decoration: underline;
+                color: $hover-color;
+            }
+        }
+        }
+    
+    
+   
+}
+.modal {
+    background-color: $primary-color !important;
+    
+    &-content {
+        background-color: $secondary-color !important;
+        color: $primary-color !important;
+        
+    }
+    &-header {
+        border-bottom: 2px solid $hover-color !important; 
+    }
+
+    &-footer {
+        border-top: 2px solid $hover-color !important; 
+    }
+
+    &-close {
+        color: $secondary-color !important;
+}
+}

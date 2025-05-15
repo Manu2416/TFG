@@ -1,0 +1,101 @@
+@use "__variables" as *;
+
+
+.navbar {
+  background-color: $primary-color;
+  display: flex;
+  width: 100%;
+  font-family: $primary-font;
+  font-weight: 200;
+  font-style: normal;
+
+  &-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+  }
+
+  &-brand {
+    height: 100%;
+    img {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+
+  &-nav {
+    font-size: 2rem;
+    display: flex;  
+    align-items: center;
+    gap: 2rem;  
+    
+  }
+
+  &-icons {
+    display: flex;
+    align-items: center; 
+    font-size: 2rem;
+    list-style: none;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    height: 100%; 
+   
+  }
+
+ 
+
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: $secondary-color;
+    padding: 0.5rem;
+    height: 100%;
+    border-bottom: 2px solid transparent;
+
+    &:hover{
+      border-bottom: 2px $hover-color solid;
+    }
+  }
+}
+.nav-link{
+  color: $secondary-color !important;
+  border-bottom: 2px solid transparent !important;
+  transition: border-bottom 0.3s ease, color 0.3s ease; 
+  &:hover{
+    border-bottom: 2px $hover-color solid  !important;
+  }
+}
+.offcanvas{
+  
+  background-color: $primary-color !important;
+}
+
+.dropdown-menu{
+    border-radius: 10px;
+    background-color: $primary-color!important;
+    .dropdown-item{
+      color: $secondary-color;
+      margin-top: 0.25rem;
+      &:hover{
+        background-color: $hover-color;
+     
+        color: $secondary-color;
+      }
+      
+    }
+    @media (max-width: 768px) {
+     
+      background-color: $secondary-color !important;
+
+  
+        .dropdown-item {
+        color: $primary-color;
+          
+        }
+      
+    }
+}

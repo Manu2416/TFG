@@ -1,0 +1,156 @@
+@use "__variables" as *;
+
+
+.consulta-title-container {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2.consulta-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+}
+
+
+.consulta-info-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.consulta-info {
+  background-color: $primary-color;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.consulta-info-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  border-bottom: 2px solid darken($secondary-color, 20%);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  .nav-item {
+    flex-grow: 1;
+    text-align: center;
+
+    .info-link {
+      background: none;
+      border: none;
+      color: $secondary-color;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      width: 100%;
+      border-radius: 0;
+      transition: all 0.3s ease;
+      
+
+      &.active {
+        background-color: darken($primary-color, 10%);
+        color: darken($secondary-color, 20%);
+      }
+
+      
+    }
+  }
+}
+
+
+.consulta-info-tab {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  min-height: 28rem;
+  display: flex;
+  justify-content: center;
+ 
+}
+
+
+.tab-pane {
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  margin: 0 auto;
+ 
+}
+
+
+.tab-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
+  padding: 2rem;
+  
+
+
+  &-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: $secondary-color;
+  }
+
+  &-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: darken($secondary-color, 20%);
+    margin: 0 auto;
+    max-width: 800px;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .tab-pane {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .consulta-title-container h2 {
+    font-size: 2rem;
+  }
+
+  .consulta-info-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tab-elements {
+    padding: 1.5rem 1rem;
+
+    &-title {
+      font-size: 1.8rem;
+    }
+
+    &-text {
+      font-size: 1rem;
+    }
+  }
+}
