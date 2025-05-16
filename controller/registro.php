@@ -50,10 +50,11 @@ if (
             if ($usuarioIdNuevo === null) {
                 throw new Exception("No se pudo obtener el ID del usuario después del registro.");
             }
-            Usuario::sumarPuntos($conexion, $usuarioIdNuevo, 50);
+            
 
           
             if ($referido_por !== null) {
+                Usuario::sumarPuntos($conexion, $usuarioIdNuevo, 50);
                 Usuario::sumarPuntos($conexion, $referido_por, 100);
             }
 
@@ -66,7 +67,7 @@ if (
             exit();
         }
     } catch (Exception $e) {
-        $_SESSION["error"] = "Error: " . $e->getMessage();
+        $_SESSION["error"] = "email duplicado " ;
         header("Location: ../view/registrate.php");
         exit();
     }
