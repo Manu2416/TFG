@@ -2,6 +2,7 @@
 require_once "conexion.php";
 
 class Usuario {
+    private ?int $id = null;  
     private string $nombre;
     private string $email;
     private string $pass;
@@ -21,7 +22,6 @@ class Usuario {
     }
 
     private function generarCodigoInv($length = 8){
-      
         $cod = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $codigo = '';
         for ($i = 0; $i < $length; $i++) {
@@ -30,33 +30,46 @@ class Usuario {
         return $codigo;
     }
 
-    public function getDatos() {
-        return [
-            "nombre" => $this->nombre,
-            "email" => $this->email,
-            "pass" => $this->pass,
-            "fecha_nacimiento" => $this->fecha_nacimiento,
-            "puntos" => $this->puntos,
-            "referido_por" => $this->referido_por,
-            "codigo_inv" => $this->codigo_inv
-        ];
+  
+    public function getId(): ?int {
+        return $this->id;
+    }
+
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPuntos() {
+        return $this->puntos;
+    }
+
+    public function getFechaNacimiento() {
+        return $this->fecha_nacimiento;
     }
 
     public function RegistrarUsuario(PDO $conexion){
-      
-            $hashedPass = password_hash($this->pass, PASSWORD_BCRYPT);
-            $consulta = $conexion->prepare(
-                "INSERT INTO usuarios (nombre, email, pass, fecha_nacimiento, puntos, referido_por, codigo_inv) VALUES (?, ?, ?, ?, 0, ?, ?)"
-            );
-            return $consulta->execute([
-                $this->nombre,
-                $this->email,
-                $hashedPass,
-                $this->fecha_nacimiento,
-                $this->referido_por,
-                $this->codigo_inv
-            ]);
-      
+        $hashedPass = password_hash($this->pass, PASSWORD_BCRYPT);
+        $consulta = $conexion->prepare(
+            "INSERT INTO usuarios (nombre, email, pass, fecha_nacimiento, puntos, referido_por, codigo_inv) VALUES (?, ?, ?, ?, 0, ?, ?)"
+        );
+        $resultado = $consulta->execute([
+            $this->nombre,
+            $this->email,
+            $hashedPass,
+            $this->fecha_nacimiento,
+            $this->referido_por,
+            $this->codigo_inv
+        ]);
+
+        if ($resultado) {
+            $this->id = (int) $conexion->lastInsertId();
+        }
+
+        return $resultado;
     }
 
     public function IniciarSesion(PDO $conexion, $pass, $email) {
@@ -66,6 +79,7 @@ class Usuario {
         $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario && password_verify($pass, $usuario["pass"])) {
+            $this->id = (int)$usuario["id"]; // asignar el id al iniciar sesión también
             $this->nombre = $usuario["nombre"];
             $this->email = $usuario["email"];
             $this->pass = $usuario["pass"];
@@ -84,6 +98,12 @@ class Usuario {
         $consulta->execute([$codigo]);
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
         return $resultado ? (int)$resultado['id'] : null;
+    }
+    
+    public static function sumarPuntos($conexion, $usuarioId, $cantidad) {
+        $sql = "UPDATE usuarios SET puntos = puntos + ? WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        return $stmt->execute([$cantidad, $usuarioId]);
     }
 }
 ?>

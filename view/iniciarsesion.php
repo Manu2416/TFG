@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,16 +20,29 @@
 <body>
 
   <?php include '../includes/cabecera.php'; ?>
+   <?php
+  $alerta = "";
 
+  if (!empty($_SESSION["error_login"])) {
+      $alerta = '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          ' . htmlspecialchars($_SESSION["error_login"]) . '
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>';
+      unset($_SESSION["error_login"]);
+  } 
+  
+  ?>
   <main class="container container-form">
-    <form action="registro.php" method="POST" class="form-registro p-4">
+    <?= $alerta ?>
+    <form action="../controller/iniciosesion.php" method="POST" class="form-registro p-4">
       <h2 class="mb-4 text-center form-title">INICIAR SESIÓN</h2>
 
       <label for="email" class="form-label">Correo electrónico</label>
       <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu Correo">
 
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu Contraseña">
+      <input type="password" class="form-control" id="pass" name="pass" placeholder="Ingresa tu Contraseña">
 
       <button type="submit" class="form-btn">Iniciar Sesión</button>
       <p class="form-text ">¿Aún no te has registrado? <a href="./registrate.php" class="form-text--link">Regístrate Aquí</a></p>
