@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +22,29 @@
   <?php include '../includes/cabecera.php'; ?>
 
   <main class="container container-form">
-    <form action="registro.php" method="POST" class="form-registro p-4">
+  <?php
+  $alerta = "";
+
+  if (!empty($_SESSION["error"])) {
+      $alerta = '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          ' . htmlspecialchars($_SESSION["error"]) . '
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>';
+      unset($_SESSION["error"]);
+  } elseif (!empty($_SESSION["correcto"])) {
+      $alerta = '
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          ' . htmlspecialchars($_SESSION["correcto"]) . '
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>';
+      unset($_SESSION["correcto"]);
+  }
+  
+  ?>
+  <?= $alerta ?>
+
+    <form action="../controller/registro.php" method="POST" class="form-registro p-4">
       <h2 class="mb-4 text-center form-title">REGÍSTRATE</h2>
 
       <label for="nombre" class="form-label">Nombre de Usuario</label>
@@ -29,7 +54,7 @@
       <input type="email" class="form-control" id="email" name="email" placeholder="Ej: correo@gmail.com">
 
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu Contraseña">
+      <input type="password" class="form-control" id="password" name="pass" placeholder="Ingresa tu Contraseña">
 
       <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
       <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
