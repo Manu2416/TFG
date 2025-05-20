@@ -22,7 +22,8 @@ if (
                 "nombre" => $usuario->getNombre(),
                 "email" => $usuario->getEmail(),
                 "puntos" => $usuario->getPuntos(),
-                "fecha_nacimiento" => $usuario->getFechaNacimiento()
+                "fecha_nacimiento" => $usuario->getFechaNacimiento(),
+                "codigo_inv" => $usuario->getCodigo_inv()
             ];
 
             header("Location: ../view/perfil.php");

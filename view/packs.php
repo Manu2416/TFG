@@ -28,7 +28,7 @@ session_start();
 
     $bd = new BD();
     $conexion = $bd->iniciar_Conexion();
-    $productos = Producto::obtenerAccesorios($conexion);
+    $productos = Producto::obtenerPacks($conexion);
     ?>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 card-container">

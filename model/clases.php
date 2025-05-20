@@ -20,7 +20,7 @@ class Usuario {
         $this->referido_por = $referido_por;
         $this->codigo_inv = $this->generarCodigoInv();
     }
-
+    // Generamos un codigo de inv aleatorio
     private function generarCodigoInv($length = 8){
         $cod = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $codigo = '';
@@ -30,7 +30,7 @@ class Usuario {
         return $codigo;
     }
 
-  
+    // Todos los Getters
     public function getId(): ?int {
         return $this->id;
     }
@@ -50,7 +50,10 @@ class Usuario {
     public function getFechaNacimiento() {
         return $this->fecha_nacimiento;
     }
-
+       public function getCodigo_inv() {
+        return $this->codigo_inv;
+    }
+    // Registramos Usuarios
     public function RegistrarUsuario(PDO $conexion){
         $hashedPass = password_hash($this->pass, PASSWORD_BCRYPT);
         $consulta = $conexion->prepare(
@@ -71,7 +74,7 @@ class Usuario {
 
         return $resultado;
     }
-
+    // Iniciamos sesion
     public function IniciarSesion(PDO $conexion, $pass, $email) {
         $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE email = ?");
         $consulta->execute([$email]);
@@ -92,18 +95,91 @@ class Usuario {
             return false;
         }
     }
-
+    // Cogemos el cod_inv
     public static function obtenerIdPorCodigo(PDO $conexion, $codigo): ?int {
         $consulta = $conexion->prepare("SELECT id FROM usuarios WHERE codigo_inv = ?");
         $consulta->execute([$codigo]);
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
         return $resultado ? (int)$resultado['id'] : null;
     }
-    
+    // Sumamos puntos al invitar
     public static function sumarPuntos($conexion, $usuarioId, $cantidad) {
         $sql = "UPDATE usuarios SET puntos = puntos + ? WHERE id = ?";
         $stmt = $conexion->prepare($sql);
         return $stmt->execute([$cantidad, $usuarioId]);
     }
 }
+class Producto {
+    private string $nombre;
+    private string $descripcion;
+    private float $precio;
+    private int $precio_puntos;
+    private string $imagen;
+    private int $stock;
+    private int $tipo_id;
+
+    public function __construct($nombre, $descripcion, $precio, $precio_puntos, $imagen, $stock, $tipo_id) {
+        $this->nombre = $nombre;
+        $this->descripcion = $descripcion;
+        $this->precio = $precio;
+        $this->precio_puntos = $precio_puntos;
+        $this->imagen = $imagen;
+        $this->stock = $stock;
+        $this->tipo_id = $tipo_id;
+    }
+
+    // Guardar un nuevo producto
+    public function guardar(PDO $conexion): bool {
+        $consulta = $conexion->prepare("INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) 
+                                        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        return $consulta->execute([
+            $this->nombre,
+            $this->descripcion,
+            $this->precio,
+            $this->precio_puntos,
+            $this->imagen,
+            $this->stock,
+            $this->tipo_id
+        ]);
+    }
+    public static function obtenerCanjeablesPorPuntos($conexion) {
+    $sql = "SELECT * FROM productos WHERE precio_puntos > 0 ORDER BY precio_puntos ASC";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Obtenemos cada tipo_producto
+    public static function obtenerAccesorios($conexion) {
+        $sql = "SELECT * FROM productos WHERE tipo_id = 1";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function obtenerPacks($conexion) {
+        $sql = "SELECT * FROM productos WHERE tipo_id = 3";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function obtenerProdcutos($conexion) {
+        $sql = "SELECT * FROM productos WHERE tipo_id = 2";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Actualizar stock
+    public static function actualizarStock(PDO $conexion, int $id, int $nuevoStock): bool {
+        $consulta = $conexion->prepare("UPDATE productos SET stock = ? WHERE id = ?");
+        return $consulta->execute([$nuevoStock, $id]);
+    }
+
+    // Eliminar producto
+    public static function eliminar(PDO $conexion, int $id): bool {
+        $consulta = $conexion->prepare("DELETE FROM productos WHERE id = ?");
+        return $consulta->execute([$id]);
+    }
+}
+
 ?>

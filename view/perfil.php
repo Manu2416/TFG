@@ -21,6 +21,8 @@ session_start();
     <?php include '../includes/cabecera.php'; ?>
    <main class="container text-center my-5">
     <h2>Hola <?= $_SESSION['usuario']['nombre']; ?></h2>
+    <h3 class="mt-4">Tus Codigo de invitación</h3>
+    <div><?= $_SESSION['usuario']['codigo_inv']; ?></div>
     <h3 class="mt-4">Tus pedidos</h3>
 
     <div class="row justify-content-center mt-4">

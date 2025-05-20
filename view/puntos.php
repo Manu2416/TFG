@@ -38,9 +38,44 @@ $puntos = $_SESSION['usuario']['puntos'] ?? 0;
     </div>
 </div>
 
+<?php
+require_once "../model/conexion.php";
+require_once "../model/clases.php";
+
+$bd = new BD();
+$conexion = $bd->iniciar_Conexion();
+$productos = Producto::obtenerCanjeablesPorPuntos($conexion);
+?>
+
+
+
 <main class="container mb-5">
-    <!-- Aquí tu contenido con productos... -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 card-container">
+       <?php foreach ($productos as $producto): ?>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="<?= htmlspecialchars($producto['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($producto['nombre']) ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($producto['nombre']) ?></h5>
+                        <p class="card-text"><?= htmlspecialchars($producto['descripcion']) ?></p>
+                        <p class="card-price card-price-puntos">
+                            <?= $producto['precio_puntos'] ?>
+                            <img src="../images/moneda.png" alt="Moneda" style="width: 40px; height: 40px;">
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <form method="POST" action="añadir_carrito_puntos.php">
+                            <input type="hidden" name="producto_id" value="<?= $producto['id'] ?>">
+                            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </main>
+
+
 
 <?php include '../includes/footer.php'; ?>
 
