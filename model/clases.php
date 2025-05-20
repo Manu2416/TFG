@@ -79,7 +79,7 @@ class Usuario {
         $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario && password_verify($pass, $usuario["pass"])) {
-            $this->id = (int)$usuario["id"]; // asignar el id al iniciar sesión también
+            $this->id = (int)$usuario["id"];
             $this->nombre = $usuario["nombre"];
             $this->email = $usuario["email"];
             $this->pass = $usuario["pass"];

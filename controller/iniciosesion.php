@@ -25,7 +25,7 @@ if (
                 "fecha_nacimiento" => $usuario->getFechaNacimiento()
             ];
 
-            header("Location: ../index.php");
+            header("Location: ../view/perfil.php");
             exit();
         } else {
             $_SESSION["error_login"] = "Email o contraseña incorrectos.";
@@ -36,11 +36,7 @@ if (
         $_SESSION["error_login"] = "Error en la base de datos: " . $e->getMessage();
         header("Location: ../view/iniciarsesion.php");
         exit();
-    } catch (Exception $e) {
-        $_SESSION["error_login"] = "Error inesperado: " . $e->getMessage();
-        header("Location: ../view/iniciarsesion.php");
-        exit();
-    }
+    } 
 } else {
     $_SESSION["error_login"] = "Faltan datos.";
     header("Location: ../view/iniciarsesion.php");

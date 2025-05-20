@@ -44,7 +44,11 @@
       <ul class="navbar-icons">
         <li><a href="../view/puntos.php " class="navbar-button"><i class="bi bi-gift-fill"></i></a></li>
         <li><a href="../view/carrito.php" class="navbar-button"><i class="bi bi-bag-fill"></i></a></li>
-        <li><a href="../view/iniciarsesion.php" class="navbar-button"><i class="bi bi-person-fill"></i></a></li>
+        <?php if (isset($_SESSION['usuario'])): ?>
+            <a href="../view/perfil.php" class="navbar-button"><i class="bi bi-person-fill"></i></a>
+        <?php else: ?>
+            <a href="../view/iniciarsesion.php" class="navbar-button"><i class="bi bi-person-fill"></i></a>
+        <?php endif; ?>
       </ul>
      
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">

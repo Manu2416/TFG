@@ -3,7 +3,9 @@ session_start();
 
 // Si no hay usuario en sesión, redirigir a login
 if (!isset($_SESSION['usuario'])) {
+    $_SESSION["error"] = "Debes iniciar sesion para acceder a esta página";
     header('Location: ../view/iniciarsesion.php');
+    
     exit();
 }
 
@@ -31,7 +33,7 @@ $puntos = $_SESSION['usuario']['puntos'] ?? 0;
     <div class="row d-flex justify-content-end">
         <div class="col-auto puntos mx-5">
             <img src="../images/moneda.png" alt="Moneda" />
-            <p><?= htmlspecialchars($puntos) ?></p>
+            <p><?= $puntos ?></p>
         </div>
     </div>
 </div>

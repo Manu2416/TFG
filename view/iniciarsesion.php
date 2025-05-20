@@ -26,10 +26,18 @@ session_start();
   if (!empty($_SESSION["error_login"])) {
       $alerta = '
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          ' . htmlspecialchars($_SESSION["error_login"]) . '
+          ' .($_SESSION["error_login"]) . '
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
       </div>';
       unset($_SESSION["error_login"]);
+  } 
+   if (!empty($_SESSION["error"])) {
+      $alerta = '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          ' .($_SESSION["error"]) . '
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>';
+      unset($_SESSION["error"]);
   } 
   
   ?>
