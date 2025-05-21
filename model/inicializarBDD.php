@@ -1,4 +1,38 @@
 <?php
+// Datos de conexión
+$host = 'localhost';
+$usuario = 'root';
+$contrasenia = '123';
+// Datos de conexión
+$host = 'localhost';
+$usuario = 'root';
+$contrasenia = '123';
+$nombreBD = 'TFG';
+
+try {
+    // Conectamos al servidor sin especificar base de datos
+    $pdoTemp = new PDO("mysql:host=$host", $usuario, $contrasenia);
+    $pdoTemp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Creamos la base de datos si no existe
+    $sql = "CREATE DATABASE IF NOT EXISTS $nombreBD CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+    $pdoTemp->exec($sql);
+    $pdoTemp = null; // Cerramos conexión temporal
+} catch (PDOException $e) {
+    die("Error creando la base de datos: " . $e->getMessage());
+}
+try {
+    // Conectamos al servidor sin especificar base de datos
+    $pdoTemp = new PDO("mysql:host=$host", $usuario, $contrasenia);
+    $pdoTemp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Creamos la base de datos si no existe
+    $sql = "CREATE DATABASE IF NOT EXISTS $nombreBD CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+    $pdoTemp->exec($sql);
+    $pdoTemp = null; // Cerramos conexión temporal
+} catch (PDOException $e) {
+    die("Error creando la base de datos: " . $e->getMessage());
+}
 // Llamamos a la conexión
 require_once "conexion.php";
 
@@ -16,6 +50,7 @@ $consulta = "CREATE TABLE IF NOT EXISTS usuarios (
     puntos INT DEFAULT 0,
     rol ENUM('usuario', 'admin') DEFAULT 'usuario',
     referido_por INT,
+    codigo_inv int,
     FOREIGN KEY (referido_por) REFERENCES usuarios(id)
 ) ENGINE=InnoDB;";
 
