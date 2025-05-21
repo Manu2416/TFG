@@ -154,4 +154,49 @@ try {
 } catch (PDOException $e) {
     echo "Error insertando admin: " . $e->getMessage();
 }
+
+$consulta = "INSERT INTO tipo_producto (nombre) VALUES 
+('Accesorios'),
+('Café'),
+('Packs');
+";
+try {
+    $pdo->exec($consulta);
+} catch (PDOException $e) {
+    echo "Error al insertar los tipo_producto " . $e->getMessage();
+}
+$consultaaccesorio = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
+('Termo', 'Termo de acero inoxidable que mantiene el calor.', 15.00, 150, '../images/termo_cafe.jpg', 20, 1),
+('Soporte para Taza', 'Soporte de madera con diseño minimalista.', 12.00, 120, '../images/soporte_taza.jpg', 25, 1),
+('Molinillo de Café Manual', 'Molinillo ajustable de acero inoxidable.', 20.00, 200, '../images/molinillo.jpg', 15, 1);";
+
+try {
+    $pdo->exec($consultaaccesorio);
+} catch (PDOException $e) {
+    echo "Error al insertar los accesorios: " . $e->getMessage();
+}
+
+$consultaCafe = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
+('Café Molido Premium 250g', 'Café 100% arábica, tueste medio.', 8.90, 89, '../images/cafe_molido.jpg', 50, 2),
+('Café en Grano Intenso 500g', 'Granos seleccionados con sabor fuerte.', 12.50, 125, '../images/cafe_grano.jpg', 40, 2),
+('Descafeinado Natural 250g', 'Café sin cafeína, sabor suave.', 7.90, 79, '../images/cafe_descafeinado.jpg', 35, 2),
+('Café de Especialidad 250g', 'Edición limitada de origen único.', 10.50, 105, '../images/cafe_especial.jpg', 20, 2);";
+
+try {
+    $pdo->exec($consultaCafe);
+} catch (PDOException $e) {
+    echo "Error al insertar productos de café: " . $e->getMessage();
+}
+$consultaPacks = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
+('Pack Degustación x4', 'Incluye 4 variedades de café en sobres de 50g.', 16.00, 160, '../images/pack_degusta.jpg', 20, 3),
+('Pack Cápsulas Intenso x10', 'Cápsulas compatibles con Nespresso.', 6.50, 65, '../images/pack_capsulas.jpg', 30, 3),
+('Pack Inicio Barista', 'Taza + café molido + guía barista.', 22.00, 220, '../images/pack_barista.jpg', 15, 3),
+('Pack Regalo Café Lover', 'Caja de regalo con tazas, café y accesorios.', 30.00, 300, '../images/pack_regalo.jpg', 10, 3);";
+
+try {
+    $pdo->exec($consultaPacks);
+} catch (PDOException $e) {
+    echo "Error al insertar productos de packs: " . $e->getMessage();
+}
+
 ?>
