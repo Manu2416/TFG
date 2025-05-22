@@ -19,6 +19,7 @@ if (
 
         if ($usuario->IniciarSesion($conexion, $pass, $email)) {
             $_SESSION["usuario"] = [
+                "id" => $usuario->getId(),
                 "nombre" => $usuario->getNombre(),
                 "email" => $usuario->getEmail(),
                 "puntos" => $usuario->getPuntos(),

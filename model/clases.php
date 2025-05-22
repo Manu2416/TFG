@@ -181,5 +181,74 @@ class Producto {
         return $consulta->execute([$id]);
     }
 }
+class Pedido {
+    private PDO $conexion;
+
+    public function __construct(PDO $conexion) {
+        $this->conexion = $conexion;
+    }
+
+    public function crearPedido(int $usuarioId, array $carrito, ?string $fecha = null): int {
+        $fecha = $fecha ?? date("Y-m-d H:i:s");
+        $total = 0;
+        foreach ($carrito as $item) {
+            $total += $item['precio'] * $item['cantidad'];
+        }
+
+        $puntosGanados = floor($total); // Por ejemplo: 1 punto por cada euro
+
+        // Insertar pedido
+        $stmt = $this->conexion->prepare("INSERT INTO pedidos (usuario_id, fecha, total, puntos_ganados) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$usuarioId, $fecha, $total, $puntosGanados]);
+
+        return $this->conexion->lastInsertId(); // Devuelve el ID del nuevo pedido
+    }
+
+    public function obtenerPorId(int $id): ?array {
+        $sql = "SELECT * FROM pedidos WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute([$id]);
+        $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $pedido ?: null;
+    }
+}
+
+class DetallePedido {
+    private PDO $conexion;
+
+    public function __construct(PDO $conexion) {
+        $this->conexion = $conexion;
+    }
+
+    // Guarda todos los productos del carrito como detalles de un pedido
+    public function guardarDetalles(int $pedidoId, array $carrito): void {
+        $stmt = $this->conexion->prepare(
+            "INSERT INTO detalle_pedido (pedido_id, producto_id, cantidad, precio_unitario)
+             VALUES (?, ?, ?, ?)"
+        );
+
+        foreach ($carrito as $item) {
+            $stmt->execute([
+                $pedidoId,
+                $item['id'],
+                $item['cantidad'],
+                $item['precio']
+            ]);
+        }
+    }
+
+    // Obtiene todos los detalles de un pedido dado su ID
+    public function obtenerPorPedidoId(int $pedidoId): array {
+        $stmt = $this->conexion->prepare(
+            "SELECT dp.*, p.nombre, p.imagen 
+             FROM detalle_pedido dp
+             JOIN productos p ON dp.producto_id = p.id
+             WHERE dp.pedido_id = ?"
+        );
+        $stmt->execute([$pedidoId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
 
 ?>

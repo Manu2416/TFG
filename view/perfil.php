@@ -1,6 +1,37 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../view/login.php");
+    exit;
+}
+
+require_once "../model/conexion.php";
+
+$usuarioId = $_SESSION['usuario']['id'];
+
+$bd = new BD();
+$conexion = $bd->iniciar_Conexion();
+
+// Obtener pedidos del usuario
+$stmt = $conexion->prepare("SELECT id, fecha, total, puntos_ganados as puntos FROM pedidos WHERE usuario_id = ? ORDER BY fecha DESC");
+$stmt->execute([$usuarioId]);
+$pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Consultar código de invitación actualizado desde la BD
+$stmt = $conexion->prepare("SELECT codigo_inv FROM usuarios WHERE id = ?");
+$stmt->execute([$usuarioId]);
+$codigoInv = $stmt->fetchColumn();
+
+if ($codigoInv) {
+    $_SESSION['usuario']['codigo_inv'] = $codigoInv;
+} else {
+    $_SESSION['usuario']['codigo_inv'] = 'Código no disponible';
+}
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +54,7 @@ session_start();
     <h2>Hola <?= $_SESSION['usuario']['nombre']; ?></h2>
     <h3 class="mt-4">Tus Codigo de invitación</h3>
     <div><?= $_SESSION['usuario']['codigo_inv']; ?></div>
-    <h3 class="mt-4">Tus pedidos</h3>
+   <h3 class="mt-4">Tus pedidos</h3>
 
     <div class="row justify-content-center mt-4">
         <?php
@@ -33,10 +64,10 @@ session_start();
                 <div class="col-md-4 mb-3">
                     <div class="card shadow rounded-4">
                         <div class="card-body">
-                            <h5 class="card-title">Pedido #<?= $pedido['id'] ?></h5>
-                            <p class="card-text"><strong>Fecha:</strong> <?= $pedido['fecha'] ?></p>
+                            <h5 class="card-title">Pedido #<?= htmlspecialchars($pedido['id']) ?></h5>
+                            <p class="card-text"><strong>Fecha:</strong> <?= htmlspecialchars($pedido['fecha']) ?></p>
                             <p class="card-text"><strong>Total:</strong> <?= number_format($pedido['total'], 2) ?> €</p>
-                            <p class="card-text"><strong>Puntos ganados:</strong> <?= $pedido['puntos'] ?></p>
+                            <p class="card-text"><strong>Puntos ganados:</strong> <?= htmlspecialchars($pedido['puntos']) ?></p>
                         </div>
                     </div>
                 </div>

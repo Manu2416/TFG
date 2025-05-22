@@ -1,5 +1,51 @@
 <?php
 session_start();
+require_once "../model/conexion.php";
+require_once "../model/clases.php";
+
+$bd = new BD();
+$conexion = $bd->iniciar_Conexion();
+
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = [];
+}
+
+$mensaje = '';
+
+if (isset($_GET['add'])) {
+    $idProducto = (int)$_GET['add'];
+
+    if (isset($_SESSION['carrito'][$idProducto])) {
+        $_SESSION['carrito'][$idProducto]['cantidad']++;
+    } else {
+        $stmt = $conexion->prepare("SELECT * FROM productos WHERE id = ?");
+        $stmt->execute([$idProducto]);
+        $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($producto) {
+            $_SESSION['carrito'][$idProducto] = [
+                "id" => $producto['id'],
+                "nombre" => $producto['nombre'],
+                "precio" => $producto['precio'],
+                "cantidad" => 1,
+                "imagen" => $producto['imagen']
+            ];
+        }
+    }
+    // Mensaje para mostrar que se añadió al carrito
+    $mensaje = 'Producto añadido al carrito.';
+
+    // Redirigir sin parámetros para evitar recarga repetida
+    header("Location: " . basename($_SERVER['PHP_SELF']) . "?added=1");
+    exit;
+}
+
+// Mostrar mensaje si viene el parámetro added=1
+if (isset($_GET['added']) && $_GET['added'] == 1) {
+    $mensaje = 'Producto añadido al carrito.';
+}
+
+// Obtener productos accesorios
+$productos = Producto::obtenerAccesorios($conexion);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +76,11 @@ session_start();
     $conexion = $bd->iniciar_Conexion();
     $productos = Producto::obtenerPacks($conexion);
     ?>
-
+    <?php if ($mensaje): ?>
+        <div class="alert alert-success text-center" role="alert">
+            <?= htmlspecialchars($mensaje) ?>
+        </div>
+    <?php endif; ?>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 card-container">
     <?php foreach ($productos as $producto): ?>
       <div class="col">
@@ -42,7 +92,7 @@ session_start();
                   <p class="card-price"><?= number_format($producto['precio'], 2) ?> €</p>
               </div>
               <div class="card-footer text-center">
-                  <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                <a href="?add=<?= $producto['id'] ?>" class="btn btn-primary">Añadir al carrito</a>
               </div>
           </div>
       </div>

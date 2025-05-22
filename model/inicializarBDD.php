@@ -50,7 +50,7 @@ $consulta = "CREATE TABLE IF NOT EXISTS usuarios (
     puntos INT DEFAULT 0,
     rol ENUM('usuario', 'admin') DEFAULT 'usuario',
     referido_por INT,
-    codigo_inv int,
+    codigo_inv varchar(10),
     FOREIGN KEY (referido_por) REFERENCES usuarios(id)
 ) ENGINE=InnoDB;";
 

@@ -20,6 +20,9 @@ $carrito = $_SESSION['carrito'] ?? [];
 
   <main class="container py-5">
     <h2 class="mb-4 text-center">Tu carrito</h2>
+    <?php if (!isset($_SESSION['usuario'])): ?>
+      <p>Debes <a href="login.php">iniciar sesión</a> para poder realizar la compra.</p>
+    <?php endif; ?>
 
     <?php if (empty($carrito)): ?>
       <p class="text-center">Tu carrito está vacío.</p>
@@ -80,7 +83,7 @@ $carrito = $_SESSION['carrito'] ?? [];
     <?php endif; ?>
 
     <div class="text-end mt-4">
-      <button class="btn btn-success">Finalizar compra</button>
+      <a href="../controller/realizarpedido.php" class="btn btn-success">Finalizar compra</a>
     </div>
   </main>
 
