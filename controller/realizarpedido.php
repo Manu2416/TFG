@@ -3,9 +3,7 @@ session_start();
 require_once "../model/conexion.php";
 require_once "../model/clases.php";
 
-
 if (!isset($_SESSION['usuario'])) {
-    // No está logueado, no puede comprar
     header("Location: ../view/login.php?error=debes_login");
     exit;
 }
@@ -27,10 +25,25 @@ $detalleObj = new DetallePedido($conexion);
 try {
     $conexion->beginTransaction();
 
-    // Crear pedido solo con usuario_id, sin datos invitados
+    // Crear pedido y obtener su ID
     $pedidoId = $pedidoObj->crearPedido($usuarioId, $carrito);
 
+    // Guardar detalles del pedido
     $detalleObj->guardarDetalles($pedidoId, $carrito);
+
+    // Calcular puntos ganados según total del pedido
+    $total = 0;
+    foreach ($carrito as $item) {
+        $total += $item['precio'] * $item['cantidad'];
+    }
+    $puntosGanados = floor($total);
+
+    // Actualizar puntos del usuario
+    $stmtPuntos = $conexion->prepare("UPDATE usuarios SET puntos = puntos + ? WHERE id = ?");
+    $stmtPuntos->execute([$puntosGanados, $usuarioId]);
+
+    // Actualizar puntos en la sesión para reflejar el cambio inmediatamente
+    $_SESSION['usuario']['puntos'] += $puntosGanados;
 
     $conexion->commit();
 
@@ -44,5 +57,4 @@ try {
     header("Location: ../view/carrito.php?error=1");
     exit;
 }
-
 ?>

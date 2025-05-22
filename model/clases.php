@@ -189,20 +189,27 @@ class Pedido {
     }
 
     public function crearPedido(int $usuarioId, array $carrito, ?string $fecha = null): int {
-        $fecha = $fecha ?? date("Y-m-d H:i:s");
-        $total = 0;
-        foreach ($carrito as $item) {
-            $total += $item['precio'] * $item['cantidad'];
+        try {
+            $fecha = $fecha ?? date("Y-m-d H:i:s");
+            $total = 0;
+            foreach ($carrito as $item) {
+                $total += $item['precio'] * $item['cantidad'];
+            }
+
+            $puntosGanados = floor($total); 
+
+            // Insertar pedido
+            $stmt = $this->conexion->prepare("INSERT INTO pedidos (usuario_id, fecha, total, puntos_ganados) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$usuarioId, $fecha, $total, $puntosGanados]);
+
+       
+
+            return $this->conexion->lastInsertId(); 
+        } catch (PDOException $e) {
+            die("Error al crear el pedido: " . $e->getMessage());
         }
-
-        $puntosGanados = floor($total); // Por ejemplo: 1 punto por cada euro
-
-        // Insertar pedido
-        $stmt = $this->conexion->prepare("INSERT INTO pedidos (usuario_id, fecha, total, puntos_ganados) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$usuarioId, $fecha, $total, $puntosGanados]);
-
-        return $this->conexion->lastInsertId(); // Devuelve el ID del nuevo pedido
     }
+
 
     public function obtenerPorId(int $id): ?array {
         $sql = "SELECT * FROM pedidos WHERE id = ?";

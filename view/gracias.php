@@ -33,7 +33,7 @@ $detalles = $detalle->obtenerPorPedidoId($pedidoId);
 </head>
 <body>
 
-<?php include '../includes/cabecera.php'; ?>
+
 
 <main class="container py-5">
   <h1 class="text-center mb-4">¡Gracias por tu compra!</h1>
@@ -90,7 +90,6 @@ $detalles = $detalle->obtenerPorPedidoId($pedidoId);
   <?php endif; ?>
 </main>
 
-<?php include '../includes/footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

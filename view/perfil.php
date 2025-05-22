@@ -53,7 +53,10 @@ if ($codigoInv) {
    <main class="container text-center my-5">
     <h2>Hola <?= $_SESSION['usuario']['nombre']; ?></h2>
     <h3 class="mt-4">Tus Codigo de invitación</h3>
-    <div><?= $_SESSION['usuario']['codigo_inv']; ?></div>
+    <div class="d-flex align-items-center">
+        <span id="codigoInv"><?= htmlspecialchars($_SESSION['usuario']['codigo_inv']); ?></span>
+        <button onclick="copiarCodigo()" class="btn btn-primary btn-sm ms-2"><i class="bi bi-copy"></i></button>
+    </div>
    <h3 class="mt-4">Tus pedidos</h3>
 
     <div class="row justify-content-center mt-4">
@@ -86,6 +89,7 @@ if ($codigoInv) {
 </main>
 
     <?php include '../includes/footer.php'; ?>
+    <script src="../scripts/copiar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
