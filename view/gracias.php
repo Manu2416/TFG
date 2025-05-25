@@ -26,14 +26,13 @@ $detalles = $detalle->obtenerPorPedidoId($pedidoId);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gracias por tu compra</title>
+  <link href="../styles/carrito.css" rel="stylesheet" />
   <link href="../styles/footer.css" rel="stylesheet" />
   <link href="../styles/navbar.css" rel="stylesheet" />
   <link href="../styles/body.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
 <body>
-
-
 
 <main class="container py-5">
   <h1 class="text-center mb-4">¡Gracias por tu compra!</h1>
@@ -46,13 +45,13 @@ $detalles = $detalle->obtenerPorPedidoId($pedidoId);
     <div class="mb-4">
       <h4>Resumen del pedido</h4>
       <div class="table-responsive">
-        <table class="table table-bordered text-center align-middle">
-          <thead class="table-light">
+        <table class="table table-bordered align-middle text-center carrito">
+          <thead class="table-light carrito-header">
             <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio unitario</th>
-              <th>Subtotal</th>
+              <th class="carrito-title">Producto</th>
+              <th class="carrito-title carrito-content--cantidad">Cantidad</th>
+              <th class="carrito-title">Precio unitario</th>
+              <th class="carrito-title">Subtotal</th>
             </tr>
           </thead>
           <tbody>
@@ -63,10 +62,10 @@ $detalles = $detalle->obtenerPorPedidoId($pedidoId);
               $total += $subtotal;
             ?>
               <tr>
-                <td><?= htmlspecialchars($item['nombre']) ?></td>
-                <td><?= $item['cantidad'] ?></td>
-                <td><?= number_format($item['precio_unitario'], 2) ?> €</td>
-                <td><?= number_format($subtotal, 2) ?> €</td>
+                <td class="carrito-content"><?= htmlspecialchars($item['nombre']) ?></td>
+                <td class="carrito-content"><?= $item['cantidad'] ?></td>
+                <td class="carrito-content"><?= number_format($item['precio_unitario'], 2) ?> €</td>
+                <td class="carrito-content"><?= number_format($subtotal, 2) ?> €</td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -89,6 +88,7 @@ $detalles = $detalle->obtenerPorPedidoId($pedidoId);
     </div>
   <?php endif; ?>
 </main>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>

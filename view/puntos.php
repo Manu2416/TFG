@@ -26,6 +26,19 @@ $puntos = $_SESSION['usuario']['puntos'] ?? 0;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
+<?php if (isset($_SESSION['error-carrito'])): ?>
+  <script>
+    const mensajeErrorCarrito = <?= json_encode($_SESSION['error-carrito']) ?>;
+  </script>
+  <?php unset($_SESSION['error-carrito']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['success-carrito'])): ?>
+  <script>
+    const mensajeExitoCarrito = <?= json_encode($_SESSION['success-carrito']) ?>;
+  </script>
+  <?php unset($_SESSION['success-carrito']); ?>
+<?php endif; ?>
 <body>
 <?php include '../includes/cabecera.php'; ?>
 
@@ -36,6 +49,32 @@ $puntos = $_SESSION['usuario']['puntos'] ?? 0;
             <p><?= $puntos ?></p>
         </div>
     </div>
+</div>
+
+<!-- Modal Error -->
+<div class="modal fade" id="modalErrorCarrito" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border-danger">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="modalErrorLabel">Error</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" id="modalErrorTexto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Éxito -->
+<div class="modal fade" id="modalExitoCarrito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border-success">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="modalExitoLabel">Éxito</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" id="modalExitoTexto"></div>
+    </div>
+  </div>
 </div>
 
 <?php
@@ -64,9 +103,9 @@ $productos = Producto::obtenerCanjeablesPorPuntos($conexion);
                         </p>
                     </div>
                     <div class="card-footer text-center">
-                        <form method="POST" action="añadir_carrito_puntos.php">
+                        <form method="POST" action="../controller/aniadir_carrito_puntos.php">
                             <input type="hidden" name="producto_id" value="<?= $producto['id'] ?>">
-                            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                            <button type="submit" class="btn btn-primary">canjear</button>
                         </form>
                     </div>
                 </div>
@@ -78,7 +117,7 @@ $productos = Producto::obtenerCanjeablesPorPuntos($conexion);
 
 
 <?php include '../includes/footer.php'; ?>
-
+<script src="../scripts/modadlerror.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

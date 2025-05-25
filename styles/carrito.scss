@@ -1,0 +1,44 @@
+@use "__variables" as *;
+
+.carrito{
+    border: 5px solid $primary-color !important;
+    color: $primary-color !important;
+ 
+    &-title{
+         background-color: $primary-color !important;
+         color: $secondary-color !important;
+         border: none;
+         
+        
+    }
+    &-content{
+        background-color : $secondary-color !important;
+        color: $primary-color !important;
+        
+         &--cantidad{
+            width: 1rem;
+         }
+    }
+    &-input{ 
+        width: 60px !important;
+        padding: 0.25rem !important;
+       
+        text-align: center !important;
+        background-color: transparent !important; 
+        border: 1px solid $primary-color !important;
+        color: $primary-color !important;
+
+        &:focus {
+            outline: none !important;
+            border-color: $hover-color !important;
+            box-shadow: none !important;
+        }
+
+        &::placeholder {
+            color: $secondary-color !important;
+        }
+        }
+
+    
+}
+

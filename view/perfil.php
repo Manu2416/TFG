@@ -18,7 +18,7 @@ $stmt = $conexion->prepare("SELECT id, fecha, total, puntos_ganados as puntos FR
 $stmt->execute([$usuarioId]);
 $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Consultar código de invitación actualizado desde la BD
+// Consultar código de invitación desde la BD
 $stmt = $conexion->prepare("SELECT codigo_inv FROM usuarios WHERE id = ?");
 $stmt->execute([$usuarioId]);
 $codigoInv = $stmt->fetchColumn();
@@ -41,6 +41,7 @@ if ($codigoInv) {
     <link href="../styles/footer.css" rel="stylesheet">
     <link href="../styles/navbar.css" rel="stylesheet">
     <link href="../styles/body.css" rel="stylesheet">
+     <link href="../styles/perfil.css" rel="stylesheet">
     <link href="../styles/productos.css" rel="stylesheet">
    
     <!-- Bootstrap y Bootstrap Icons -->
@@ -50,12 +51,12 @@ if ($codigoInv) {
 </head>
 <body>
     <?php include '../includes/cabecera.php'; ?>
-   <main class="container text-center my-5">
+   <main class="container text-center my-5 perfil">
     <h2>Hola <?= $_SESSION['usuario']['nombre']; ?></h2>
-    <h3 class="mt-4">Tus Codigo de invitación</h3>
-    <div class="d-flex align-items-center">
-        <span id="codigoInv"><?= htmlspecialchars($_SESSION['usuario']['codigo_inv']); ?></span>
-        <button onclick="copiarCodigo()" class="btn btn-primary btn-sm ms-2"><i class="bi bi-copy"></i></button>
+    <h3 class="mt-4 ">Tu Codigo de invitación</h3>
+    <div class="perfil-codigo">
+        <span id="codigoInv" class="codigo ms-2"><?= htmlspecialchars($_SESSION['usuario']['codigo_inv']); ?></span>
+        <button onclick="copiarCodigo()" class="btn btn-copy ms-2"><i class="bi bi-copy"></i></button>
     </div>
    <h3 class="mt-4">Tus pedidos</h3>
 

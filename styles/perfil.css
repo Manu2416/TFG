@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.perfil {
+  color: #6b502c;
+}
+.perfil-codigo {
+  border: 5px #6b502c solid;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  border-radius: 11px;
+}
+
+.btn-copy {
+  background-color: #6b502c !important;
+  color: #ffddab !important;
+}/*# sourceMappingURL=perfil.css.map */

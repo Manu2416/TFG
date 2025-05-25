@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.carrito {
+  border: 5px solid #6b502c !important;
+  color: #6b502c !important;
+}
+.carrito-title {
+  background-color: #6b502c !important;
+  color: #ffddab !important;
+  border: none;
+}
+.carrito-content {
+  background-color: #ffddab !important;
+  color: #6b502c !important;
+}
+.carrito-content--cantidad {
+  width: 1rem;
+}
+.carrito-input {
+  width: 60px !important;
+  padding: 0.25rem !important;
+  text-align: center !important;
+  background-color: transparent !important;
+  border: 1px solid #6b502c !important;
+  color: #6b502c !important;
+}
+.carrito-input:focus {
+  outline: none !important;
+  border-color: #11c001 !important;
+  box-shadow: none !important;
+}
+.carrito-input::-moz-placeholder {
+  color: #ffddab !important;
+}
+.carrito-input::placeholder {
+  color: #ffddab !important;
+}/*# sourceMappingURL=carrito.css.map */

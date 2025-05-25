@@ -108,6 +108,13 @@ class Usuario {
         $stmt = $conexion->prepare($sql);
         return $stmt->execute([$cantidad, $usuarioId]);
     }
+    // Restar puntos 
+    public static function restarPuntos(PDO $conexion, $usuarioId,$cantidad): bool {
+    $sql = "UPDATE usuarios SET puntos = puntos - ? WHERE id = ? AND puntos >= ?";
+    $stmt = $conexion->prepare($sql);
+    return $stmt->execute([$cantidad, $usuarioId, $cantidad]);
+}
+
 }
 class Producto {
     private string $nombre;
@@ -168,6 +175,15 @@ class Producto {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function obtenerPorId(PDO $conexion, $id) {
+        $sql = "SELECT * FROM productos WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([$id]);
+        $producto = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $producto ?: null;
+    }
+
 
     // Actualizar stock
     public static function actualizarStock(PDO $conexion, int $id, int $nuevoStock): bool {

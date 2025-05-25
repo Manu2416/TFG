@@ -46,4 +46,8 @@ main {
 }
 .banner.paused .banner-track {
   animation-play-state: paused;
+}
+
+.text {
+  color: #6b502c;
 }/*# sourceMappingURL=body.css.map */

@@ -1,0 +1,15 @@
+@use "__variables" as *;
+
+.perfil{
+    color: $primary-color;
+    &-codigo{
+        border: 5px $primary-color solid;
+        width: fit-content;
+          margin: auto; 
+          border-radius: 11px;
+    }
+}
+.btn-copy{
+    background-color: $primary-color !important;
+    color: $secondary-color !important;
+}
