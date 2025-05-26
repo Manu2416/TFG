@@ -24,10 +24,15 @@ if (
                 "email" => $usuario->getEmail(),
                 "puntos" => $usuario->getPuntos(),
                 "fecha_nacimiento" => $usuario->getFechaNacimiento(),
-                "codigo_inv" => $usuario->getCodigo_inv()
+                "codigo_inv" => $usuario->getCodigo_inv(),
+                "rol" => $usuario->getRol()
             ];
 
-            header("Location: ../view/perfil.php");
+            if ($usuario->getRol() === 'admin') {
+                header("Location: ../view/panel.php");
+            } else {
+                header("Location: ../view/inicio.php");
+            }
             exit();
         } else {
             $_SESSION["error_login"] = "Email o contraseña incorrectos.";
@@ -38,10 +43,12 @@ if (
         $_SESSION["error_login"] = "Error en la base de datos: " . $e->getMessage();
         header("Location: ../view/iniciarsesion.php");
         exit();
-    } 
+    }
 } else {
     $_SESSION["error_login"] = "Faltan datos.";
     header("Location: ../view/iniciarsesion.php");
     exit();
 }
 ?>
+
+

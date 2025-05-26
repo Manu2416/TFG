@@ -5,19 +5,21 @@ class Usuario {
     private ?int $id = null;  
     private string $nombre;
     private string $email;
+    private string $rol;
     private string $pass;
     private string $fecha_nacimiento;
     private int $puntos;
     private ?int $referido_por;
     private string $codigo_inv;
 
-    public function __construct($nombre, $email, $pass, $fecha_nacimiento, $referido_por = null) {
+    public function __construct($nombre, $email, $pass, $fecha_nacimiento, $referido_por = null,$rol = "usuario") {
         $this->nombre = $nombre;
         $this->email = $email;
         $this->pass = $pass;
         $this->fecha_nacimiento = $fecha_nacimiento;
         $this->puntos = 0;
         $this->referido_por = $referido_por;
+         $this->rol = $rol;
         $this->codigo_inv = $this->generarCodigoInv();
     }
     // Generamos un codigo de inv aleatorio
@@ -52,6 +54,9 @@ class Usuario {
     }
        public function getCodigo_inv() {
         return $this->codigo_inv;
+    }
+    public function getRol() {
+        return $this->rol;
     }
     // Registramos Usuarios
     public function RegistrarUsuario(PDO $conexion){
@@ -90,6 +95,7 @@ class Usuario {
             $this->puntos = (int)$usuario["puntos"];
             $this->referido_por = $usuario["referido_por"] !== null ? (int)$usuario["referido_por"] : null;
             $this->codigo_inv = $usuario["codigo_inv"];
+            $this->rol = $usuario['rol'];
             return true;
         } else {
             return false;
@@ -169,7 +175,7 @@ class Producto {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public static function obtenerProdcutos($conexion) {
+    public static function obtenerProductos($conexion) {
         $sql = "SELECT * FROM productos WHERE tipo_id = 2";
         $stmt = $conexion->prepare($sql);
         $stmt->execute();
@@ -184,6 +190,14 @@ class Producto {
         return $producto ?: null;
     }
 
+    public static function obtenerTodos(PDO $conexion) {
+    $sql = "SELECT * FROM productos";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
     // Actualizar stock
     public static function actualizarStock(PDO $conexion, int $id, int $nuevoStock): bool {
@@ -192,7 +206,7 @@ class Producto {
     }
 
     // Eliminar producto
-    public static function eliminar(PDO $conexion, int $id): bool {
+    public static function eliminar(PDO $conexion, int $id) {
         $consulta = $conexion->prepare("DELETE FROM productos WHERE id = ?");
         return $consulta->execute([$id]);
     }

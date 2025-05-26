@@ -5,6 +5,10 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: ../view/login.php");
     exit;
 }
+if ($_SESSION['usuario']['rol'] === 'admin') {
+    header("Location: ../view/panel.php");
+    exit;
+}
 
 require_once "../model/conexion.php";
 

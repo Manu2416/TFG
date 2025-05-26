@@ -145,8 +145,8 @@ try {
 $admin = "admin";
 $contraAdmin = password_hash($admin, PASSWORD_BCRYPT);
 
-$consulta = "INSERT INTO usuarios (nombre, email, pass, fecha_nacimiento, puntos, rol)
-VALUES ('admin', 'admin@admin.com', '$contraAdmin', '2000-01-01', 0, 'admin')";
+$consulta = "INSERT INTO usuarios (nombre, email, pass, fecha_nacimiento, puntos, rol,codigo_inv)
+VALUES ('admin', 'admin@admin.com', '$contraAdmin', '2000-01-01', 0, 'admin','codigoinv')";
 
 
 try {
