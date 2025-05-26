@@ -74,28 +74,3 @@
   background-color: $primary-color !important;
 }
 
-.dropdown-menu{
-    border-radius: 10px;
-    background-color: $primary-color!important;
-    .dropdown-item{
-      color: $secondary-color;
-      margin-top: 0.25rem;
-      &:hover{
-        background-color: $hover-color;
-     
-        color: $secondary-color;
-      }
-      
-    }
-    @media (max-width: 768px) {
-     
-      background-color: $secondary-color !important;
-
-  
-        .dropdown-item {
-        color: $primary-color;
-          
-        }
-      
-    }
-}

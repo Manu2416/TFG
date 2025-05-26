@@ -61,25 +61,4 @@
 
 .offcanvas {
   background-color: #6b502c !important;
-}
-
-.dropdown-menu {
-  border-radius: 10px;
-  background-color: #6b502c !important;
-}
-.dropdown-menu .dropdown-item {
-  color: #ffddab;
-  margin-top: 0.25rem;
-}
-.dropdown-menu .dropdown-item:hover {
-  background-color: #11c001;
-  color: #ffddab;
-}
-@media (max-width: 768px) {
-  .dropdown-menu {
-    background-color: #ffddab !important;
-  }
-  .dropdown-menu .dropdown-item {
-    color: #6b502c;
-  }
 }/*# sourceMappingURL=navbar.css.map */

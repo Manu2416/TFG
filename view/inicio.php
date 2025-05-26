@@ -36,7 +36,6 @@ session_start();
 </div>
 <main>
 <?php include '../includes/box.php';?>
-<?php include '../includes/box.php';?>
 </main>
 
 <?php include '../includes/footer.php';?>

@@ -20,15 +20,8 @@
             <li class="nav-item">
               <a class="nav-link" href="../view/quienes.php">¿QUIENES SOMOS?</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CAFES</a>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Bruma del Amazonas</a></li>
-              <li><a class="dropdown-item" href="#">Latte Luz de la Tierra</a></li>
-              <li><a class="dropdown-item" href="#">Espresso Raíz Profunda</a></li>
-              <li><a class="dropdown-item" href="#">Capuccino Cosecha Solar</a></li>
-
-              </ul>
+            <li class="nav-item ">
+              <a class="nav-link" href="../view/productos.php">CAFÉS</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../view/accesorios.php">ACCESORIOS</a>

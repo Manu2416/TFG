@@ -12,25 +12,25 @@
   <div class="slider-item slider-item--1">
     <h2>Packs de cápsulas</h2>
     <p>Descubre nuestras combinaciones exclusivas para cada momento del día</p>
-    <a href="/productos" class="btn-comprar">Ver productos</a>
+    <a href="../view/packs.php" class="btn-comprar">Ver Packs</a>
   </div>
 
   <div class="slider-item slider-item--2">
     <h2>Cápsulas individuales</h2>
-    <p>Elige tu café favorito por separado y personaliza tu experiencia</p>
-    <a href="/productos" class="btn-comprar">Explorar cafés</a>
+    <p>Elige tu café favorito y personaliza tu experiencia</p>
+    <a href="../view/productos.php" class="btn-comprar">Explorar cafés</a>
   </div>
 
   <div class="slider-item slider-item--3">
     <h2>Accesorios para amantes del café</h2>
     <p>Complementa tu rutina con tazas, termos, camisetas y más</p>
-    <a href="/productos" class="btn-comprar">Ver accesorios</a>
+    <a href="../view/accesorios.php" class="btn-comprar">Ver accesorios</a>
   </div>
 
   <div class="slider-item slider-item--4">
     <h2>Tienda de puntos</h2>
     <p>Acumula puntos con tus compras y canjéalos por productos exclusivos</p>
-    <a href="/productos" class="btn-comprar">Canjear puntos</a>
+    <a href="../view/puntos.php" class="btn-comprar">Visitar tienda</a>
   </div>
 </div>
 
