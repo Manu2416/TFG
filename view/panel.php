@@ -33,25 +33,13 @@ require_once "../model/conexion.php";
 
     <div class="row g-4">
         <!-- Gestión de Productos -->
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card text-center shadow rounded-4">
                 <div class="card-body">
                     <i class="bi bi-box-seam display-4 mb-3 text-primary"></i>
                     <h5 class="card-title">Productos</h5>
                     <p class="card-text">Añade, edita o elimina productos del catálogo.</p>
                     <a href="productos_admin.php" class="btn btn-primary">Gestionar</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pedidos -->
-        <div class="col-md-6">
-            <div class="card text-center shadow rounded-4">
-                <div class="card-body">
-                    <i class="bi bi-receipt display-4 mb-3 text-warning"></i>
-                    <h5 class="card-title">Pedidos</h5>
-                    <p class="card-text">Revisa y administra los pedidos realizados.</p>
-                    <a href="pedidos_admin.php" class="btn btn-warning text-white">Ver pedidos</a>
                 </div>
             </div>
         </div>

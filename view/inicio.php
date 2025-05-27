@@ -11,6 +11,7 @@ session_start();
     <link href="../styles/footer.css" rel="stylesheet">
     <link href="../styles/navbar.css" rel="stylesheet">
     <link href="../styles/body.css" rel="stylesheet">
+    <link href="../styles/reseña.css" rel="stylesheet">
   
     <!-- Bootstrap y Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -36,6 +37,74 @@ session_start();
 </div>
 <main>
 <?php include '../includes/box.php';?>
+
+<section class="reseñas-section container-fluid my-5">
+  <h2 class="reseñas-section__titulo text-center">Reseñas de nuestros clientes</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card reseñas-section__card text-center shadow rounded-4">
+        <div class="card-body">
+          <div class="reseñas-section__header">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto Ana" class="reseñas-section__header-imagen" />
+            <div>
+              <h5 class="reseñas-section__header-nombre">Ana Pérez</h5>
+              <small class="reseñas-section__header-cargo">Compradora habitual</small>
+            </div>
+          </div>
+          <p class="reseñas-section__texto">Excelente calidad y servicio. ¡Volveré a comprar sin duda!</p>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-half reseñas-section__icono"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card reseñas-section__card text-center shadow rounded-4">
+        <div class="card-body">
+          <div class="reseñas-section__header">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto Carlos" class="reseñas-section__header-imagen" />
+            <div>
+              <h5 class="reseñas-section__header-nombre">Carlos Martínez</h5>
+              <small class="reseñas-section__header-cargo">Amante del café</small>
+            </div>
+          </div>
+          <p class="reseñas-section__texto">Muy buen producto, el envío fue rápido y la atención excelente.</p>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card reseñas-section__card text-center shadow rounded-4">
+        <div class="card-body">
+          <div class="reseñas-section__header">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Foto Laura" class="reseñas-section__header-imagen" />
+            <div>
+              <h5 class="reseñas-section__header-nombre">Maria Dragneva</h5>
+              <small class="reseñas-section__header-cargo">Cliente frecuente</small>
+            </div>
+          </div>
+          <p class="reseñas-section__texto">Calidad insuperable y atención muy amable. ¡Muy recomendable!</p>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-fill reseñas-section__icono"></i>
+          <i class="bi bi-star-half reseñas-section__icono"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 </main>
 
 <?php include '../includes/footer.php';?>

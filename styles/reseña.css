@@ -1,0 +1,56 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.reseñas-section__titulo {
+  color: #6b502c !important;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.reseñas-section__card {
+  background-color: #6b502c !important;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reseñas-section__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.reseñas-section__header {
+  color: #ffddab !important;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.reseñas-section__header-imagen {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #f7a600;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.reseñas-section__header-nombre {
+  font-weight: 600;
+  color: #ffddab !important;
+  margin: 0;
+}
+.reseñas-section__header-cargo {
+  font-style: italic;
+  color: #ffddab !important;
+  opacity: 50%;
+  margin: 0;
+  font-size: 0.9rem;
+}
+.reseñas-section__texto {
+  font-size: 0.95rem;
+  color: #ffddab !important;
+  margin: 1rem 0 1.5rem 0;
+  min-height: 70px;
+}
+.reseñas-section__icono {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: #f7a600;
+}/*# sourceMappingURL=reseña.css.map */

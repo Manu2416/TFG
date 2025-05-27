@@ -71,7 +71,7 @@ session_start();
         </div>
 
         <button type="submit" class="btn btn-primary">Crear producto</button>
-        <a href="../productos_admin.php" class="btn btn-secondary">Volver para editar o eliminar</a>
+        <a href="../view/productos_admin.php" class="btn btn-secondary">Volver para editar o eliminar</a>
     </form>
 </div>
 </body>

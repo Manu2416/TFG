@@ -59,10 +59,11 @@ class Usuario {
         return $this->rol;
     }
     // Registramos Usuarios
-    public function RegistrarUsuario(PDO $conexion){
+    public function RegistrarUsuario(PDO $conexion) {
         $hashedPass = password_hash($this->pass, PASSWORD_BCRYPT);
         $consulta = $conexion->prepare(
-            "INSERT INTO usuarios (nombre, email, pass, fecha_nacimiento, puntos, referido_por, codigo_inv) VALUES (?, ?, ?, ?, 0, ?, ?)"
+            "INSERT INTO usuarios (nombre, email, pass, fecha_nacimiento, puntos, referido_por, codigo_inv, rol) 
+             VALUES (?, ?, ?, ?, 0, ?, ?, ?)"
         );
         $resultado = $consulta->execute([
             $this->nombre,
@@ -70,7 +71,8 @@ class Usuario {
             $hashedPass,
             $this->fecha_nacimiento,
             $this->referido_por,
-            $this->codigo_inv
+            $this->codigo_inv,
+            $this->rol
         ]);
 
         if ($resultado) {
@@ -101,6 +103,12 @@ class Usuario {
             return false;
         }
     }
+    // Obtiene todos los usuarios
+    public static function obtenerTodos(PDO $conexion) {
+        $consulta = $conexion->query("SELECT id, nombre, email, rol FROM usuarios");
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Cogemos el cod_inv
     public static function obtenerIdPorCodigo(PDO $conexion, $codigo): ?int {
         $consulta = $conexion->prepare("SELECT id FROM usuarios WHERE codigo_inv = ?");

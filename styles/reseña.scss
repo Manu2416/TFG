@@ -1,0 +1,66 @@
+@use "__variables" as *;
+
+.reseñas-section {
+    
+  &__titulo {
+    color: $primary-color !important;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  &__card {
+    background-color: $primary-color !important;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__header {
+    color: $secondary-color !important;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &-imagen {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #f7a600;
+      object-fit: cover;
+    }
+
+    &-nombre {
+      font-weight: 600;
+      color: $secondary-color !important;
+      margin: 0;
+    }
+
+    &-cargo {
+      font-style: italic;
+      color: $secondary-color !important;
+      opacity: 50%;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__texto {
+    font-size: 0.95rem;
+    color: $secondary-color !important;
+    margin: 1rem 0 1.5rem 0;
+    min-height: 70px;
+  }
+
+  &__icono {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #f7a600;
+  }
+}
