@@ -110,7 +110,7 @@ class Usuario {
     }
 
     // Cogemos el cod_inv
-    public static function obtenerIdPorCodigo(PDO $conexion, $codigo): ?int {
+    public static function obtenerIdPorCodigo(PDO $conexion, $codigo){
         $consulta = $conexion->prepare("SELECT id FROM usuarios WHERE codigo_inv = ?");
         $consulta->execute([$codigo]);
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
@@ -123,7 +123,7 @@ class Usuario {
         return $stmt->execute([$cantidad, $usuarioId]);
     }
     // Restar puntos 
-    public static function restarPuntos(PDO $conexion, $usuarioId,$cantidad): bool {
+    public static function restarPuntos(PDO $conexion, $usuarioId,$cantidad){
     $sql = "UPDATE usuarios SET puntos = puntos - ? WHERE id = ? AND puntos >= ?";
     $stmt = $conexion->prepare($sql);
     return $stmt->execute([$cantidad, $usuarioId, $cantidad]);
@@ -150,7 +150,7 @@ class Producto {
     }
 
     // Guardar un nuevo producto
-    public function guardar(PDO $conexion): bool {
+    public function guardar(PDO $conexion){
         $consulta = $conexion->prepare("INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) 
                                         VALUES (?, ?, ?, ?, ?, ?, ?)");
         return $consulta->execute([
@@ -162,12 +162,6 @@ class Producto {
             $this->stock,
             $this->tipo_id
         ]);
-    }
-    public static function obtenerCanjeablesPorPuntos($conexion) {
-    $sql = "SELECT * FROM productos WHERE precio_puntos > 0 ORDER BY precio_puntos ASC";
-    $stmt = $conexion->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Obtenemos cada tipo_producto
@@ -189,6 +183,13 @@ class Producto {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function obtenerPremios($conexion) {
+        $sql = "SELECT * FROM productos WHERE tipo_id = 4 ORDER BY precio_puntos ASC";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public static function obtenerPorId(PDO $conexion, $id) {
         $sql = "SELECT * FROM productos WHERE id = ?";
@@ -198,17 +199,17 @@ class Producto {
         return $producto ?: null;
     }
 
-    public static function obtenerTodos(PDO $conexion) {
-    $sql = "SELECT * FROM productos";
-    $stmt = $conexion->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        public static function obtenerTodos(PDO $conexion) {
+        $sql = "SELECT * FROM productos";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
 
     // Actualizar stock
-    public static function actualizarStock(PDO $conexion, int $id, int $nuevoStock): bool {
+    public static function actualizarStock(PDO $conexion, int $id, int $nuevoStock){
         $consulta = $conexion->prepare("UPDATE productos SET stock = ? WHERE id = ?");
         return $consulta->execute([$nuevoStock, $id]);
     }
@@ -226,7 +227,7 @@ class Pedido {
         $this->conexion = $conexion;
     }
 
-    public function crearPedido(int $usuarioId, array $carrito, ?string $fecha = null): int {
+    public function crearPedido(int $usuarioId, array $carrito, ?string $fecha = null) {
         try {
             $fecha = $fecha ?? date("Y-m-d H:i:s");
             $total = 0;
@@ -249,7 +250,7 @@ class Pedido {
     }
 
 
-    public function obtenerPorId(int $id): ?array {
+    public function obtenerPorId(int $id){
         $sql = "SELECT * FROM pedidos WHERE id = ?";
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute([$id]);
@@ -266,7 +267,7 @@ class DetallePedido {
     }
 
     // Guarda todos los productos del carrito como detalles de un pedido
-    public function guardarDetalles(int $pedidoId, array $carrito): void {
+    public function guardarDetalles(int $pedidoId, array $carrito) {
         $stmt = $this->conexion->prepare(
             "INSERT INTO detalle_pedido (pedido_id, producto_id, cantidad, precio_unitario)
              VALUES (?, ?, ?, ?)"
@@ -283,7 +284,7 @@ class DetallePedido {
     }
 
     // Obtiene todos los detalles de un pedido dado su ID
-    public function obtenerPorPedidoId(int $pedidoId): array {
+    public function obtenerPorPedidoId(int $pedidoId){
         $stmt = $this->conexion->prepare(
             "SELECT dp.*, p.nombre, p.imagen 
              FROM detalle_pedido dp

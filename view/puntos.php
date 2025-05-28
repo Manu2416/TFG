@@ -83,7 +83,7 @@ require_once "../model/clases.php";
 
 $bd = new BD();
 $conexion = $bd->iniciar_Conexion();
-$productos = Producto::obtenerCanjeablesPorPuntos($conexion);
+$productos = Producto::obtenerPremios($conexion);
 ?>
 
 

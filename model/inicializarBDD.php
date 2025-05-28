@@ -158,7 +158,8 @@ try {
 $consulta = "INSERT INTO tipo_producto (nombre) VALUES 
 ('Accesorios'),
 ('Café'),
-('Packs');
+('Packs'),
+('Premios');
 ";
 try {
     $pdo->exec($consulta);
@@ -177,10 +178,10 @@ try {
 }
 
 $consultaCafe = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
-('Café Molido Premium 250g', 'Café 100% arábica, tueste medio.', 8.90, 89, '../images/cafe_molido.jpg', 50, 2),
-('Café en Grano Intenso 500g', 'Granos seleccionados con sabor fuerte.', 12.50, 125, '../images/cafe_grano.jpg', 40, 2),
-('Descafeinado Natural 250g', 'Café sin cafeína, sabor suave.', 7.90, 79, '../images/cafe_descafeinado.jpg', 35, 2),
-('Café de Especialidad 250g', 'Edición limitada de origen único.', 10.50, 105, '../images/cafe_especial.jpg', 20, 2);";
+('Cápsulas Premium 100% Arábica', 'Cápsulas biodegradables con café arábica de tueste medio.', 8.90, 89, '../images/cafe_capsula1', 50, 2),
+('Cápsulas Intensidad Alta', 'Cápsulas biodegradables con mezcla intensa de granos seleccionados.', 12.50, 125, '../images/cafe_capsula2', 40, 2),
+('Cápsulas Descafeinado Natural', 'Cápsulas biodegradables sin cafeína, sabor suave y equilibrado.', 7.90, 79, '../images/cafe_capsula3', 35, 2),
+('Cápsulas Edición Especial', 'Cápsulas biodegradables con café de origen único en edición limitada.', 10.50, 105, '../images/cafe_capsula4', 20, 2);";
 
 try {
     $pdo->exec($consultaCafe);
@@ -195,6 +196,19 @@ $consultaPacks = "INSERT INTO productos (nombre, descripcion, precio, precio_pun
 
 try {
     $pdo->exec($consultaPacks);
+} catch (PDOException $e) {
+    echo "Error al insertar productos de packs: " . $e->getMessage();
+}
+
+
+$consultaPremios = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
+('Set Ecoffee Básico', 'Incluye taza reutilizable Ecoffee y muestra de café molido.', 12.00, 120, '../images/set_basico.jpg', 25, 4),
+('Mini Pack Sorpresa Café', 'Tres sobres sorpresa de café premium de distintas variedades.', 10.00, 100, '../images/pack_sorpresa.jpg', 30, 4),
+('Taza Ecoffe Edición Limitada', 'Taza de cerámica con diseño exclusivo Ecoffee.', 8.50, 85, '../images/taza_edicion.jpg', 40, 4),
+('Combo Ecoffee Premium', 'Taza, café gourmet y caja de regalo con diseño exclusivo.', 26.00, 260, '../images/combo_premium.jpg', 12, 4);";
+
+try {
+    $pdo->exec($consultaPremios);
 } catch (PDOException $e) {
     echo "Error al insertar productos de packs: " . $e->getMessage();
 }
