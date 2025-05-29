@@ -12,7 +12,7 @@ require_once "../model/clases.php";
 $bd = new BD();
 $conexion = $bd->iniciar_Conexion();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['precio_puntos'], $_POST['stock'], $_POST['tipo_id']) && !empty($_FILES['imagen']['name'])) {
     $nombre = trim($_POST['nombre']);
     $descripcion = trim($_POST['descripcion']);
     $precio = (float)$_POST['precio'];
@@ -20,33 +20,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = (int)$_POST['stock'];
     $tipo_id = (int)$_POST['tipo_id'];
 
-    
-    $imagen = '';
-    if (!empty($_FILES['imagen']['name'])) {
-        $nombreImagen = basename($_FILES['imagen']['name']);
-        $rutaDestino = "../images/" . $nombreImagen;
-        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
-            $imagen = $nombreImagen;
+    $nombreImagen = basename($_FILES['imagen']['name']);
+    $rutaDestino = "../images/" . $nombreImagen;
+
+    if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+        $imagen = $nombreImagen;
+
+        $producto = new Producto($nombre, $descripcion, $precio, $precio_puntos, $imagen, $stock, $tipo_id);
+        if ($producto->guardar($conexion)) {
+            $_SESSION["creado"] = "Producto creado correctamente.";
         } else {
-                $_SESSION["error"]= "Error al subir la imagen.";
+            $_SESSION["error"] = "Error al guardar el producto en la base de datos.";
         }
     } else {
-            $_SESSION["error"]= "Debe subir una imagen.";
+        $_SESSION["error"] = "Error al subir la imagen.";
     }
-
-   if (!$error) {
-    $producto = new Producto($nombre, $descripcion, $precio, $precio_puntos, $imagen, $stock, $tipo_id);
-    if ($producto->guardar($conexion)) {
-         $_SESSION["creado"]= "creado correctamente";
-        header("Location: ../view/productos_admin.php"); 
-        exit;
-    } else {
-       $_SESSION["error"] = "Error al guardar el producto en la base de datos.";
-    }
+} else {
+    $_SESSION["error"] = "Todos los campos son obligatorios, incluida la imagen.";
 }
- else {
-       $_SESSION["error"] = "rellena los campos";
-    }
 
-}
+header("Location: ../view/crearProducto_admin.php");
+exit;
 ?>
