@@ -46,10 +46,10 @@ session_start();
       <div class="card reseñas-section__card text-center shadow rounded-4">
         <div class="card-body">
           <div class="reseñas-section__header">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto Ana" class="reseñas-section__header-imagen" />
+            <img src="../images/perfil2.jpg" alt="Foto mario" class="reseñas-section__header-imagen" />
             <div>
-              <h5 class="reseñas-section__header-nombre">Ana Pérez</h5>
-              <small class="reseñas-section__header-cargo">Compradora habitual</small>
+              <h5 class="reseñas-section__header-nombre">Mario Sobrinos</h5>
+              <small class="reseñas-section__header-cargo">Experto del cafe</small>
             </div>
           </div>
           <p class="reseñas-section__texto">Excelente calidad y servicio. ¡Volveré a comprar sin duda!</p>
@@ -66,10 +66,10 @@ session_start();
       <div class="card reseñas-section__card text-center shadow rounded-4">
         <div class="card-body">
           <div class="reseñas-section__header">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto Carlos" class="reseñas-section__header-imagen" />
+            <img src="../images/perfil3.jpg" alt="Foto Paula" class="reseñas-section__header-imagen" />
             <div>
-              <h5 class="reseñas-section__header-nombre">Carlos Martínez</h5>
-              <small class="reseñas-section__header-cargo">Amante del café</small>
+              <h5 class="reseñas-section__header-nombre">Paula Muñoz</h5>
+              <small class="reseñas-section__header-cargo">Amante del arte</small>
             </div>
           </div>
           <p class="reseñas-section__texto">Muy buen producto, el envío fue rápido y la atención excelente.</p>
@@ -86,13 +86,13 @@ session_start();
       <div class="card reseñas-section__card text-center shadow rounded-4">
         <div class="card-body">
           <div class="reseñas-section__header">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Foto Laura" class="reseñas-section__header-imagen" />
+            <img src="../images/perfil1.jpg" alt="Foto Maria" class="reseñas-section__header-imagen" />
             <div>
               <h5 class="reseñas-section__header-nombre">Maria Dragneva</h5>
-              <small class="reseñas-section__header-cargo">Cliente frecuente</small>
+              <small class="reseñas-section__header-cargo">Intento de backend</small>
             </div>
           </div>
-          <p class="reseñas-section__texto">Calidad insuperable y atención muy amable. ¡Muy recomendable!</p>
+          <p class="reseñas-section__texto">¡Gracias a este cafe cogi fuerzas para hacer mi tfg!</p>
           <i class="bi bi-star-fill reseñas-section__icono"></i>
           <i class="bi bi-star-fill reseñas-section__icono"></i>
           <i class="bi bi-star-fill reseñas-section__icono"></i>

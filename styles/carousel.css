@@ -62,20 +62,21 @@
   background-image: url(../images/accesorio.jpg);
 }
 .slider .slider-item--4 {
-  background-image: url(../images/accesorio.jpg);
+  background-image: url(../images/puntos.jpg);
 }
 .slider .slider-item h2 {
-  color: #6b502c;
+  color: #11c001;
   font-size: 2.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 4px rgba(86, 87, 86, 0.5);
 }
 .slider .slider-item p {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #f4f4f4;
+  color: #ffffff;
   max-width: 90%;
+  text-shadow: 1px 1px 4px rgba(0, 247, 0, 0.5);
   text-align: center;
   line-height: 1.4;
 }

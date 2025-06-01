@@ -37,7 +37,6 @@
   position: relative;
   height: 35rem;
   padding-bottom: 60px;
-
   .slider-item {
     height: 100%;
     background-size: cover;
@@ -65,22 +64,23 @@
     }
 
     &--4 {
-      background-image: url(../images/accesorio.jpg);
+      background-image: url(../images/puntos.jpg);
     }
 
     h2 {
-      color: $primary-color;
+      color: $hover-color;
       font-size: 2.2rem;
       font-weight: bold;
       margin-bottom: 1rem;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 4px rgba(86, 87, 86, 0.5);
     }
 
     p {
       font-size: 1.1rem;
       margin-bottom: 1.5rem;
-      color: #f4f4f4;
+      color: #ffffff;
       max-width: 90%;
+      text-shadow: 1px 1px 4px rgba(0, 247, 0, 0.5);
       text-align: center;
       line-height: 1.4;
     }
@@ -115,10 +115,12 @@
   }
 
   .slider {
+   
     height: auto;
 
     .slider-item {
       padding: 1.5rem 1rem;
+     
 
       h2 {
         font-size: 1.3rem;
