@@ -1,6 +1,10 @@
 <?php
 require_once "conexion.php";
-
+/**
+ * Clase Usuario
+ * 
+ * Representa un usuario del sistema de tienda virtual.
+ */
 class Usuario {
     private ?int $id = null;  
     private string $nombre;
@@ -11,6 +15,16 @@ class Usuario {
     private int $puntos;
     private ?int $referido_por;
     private string $codigo_inv;
+       /**
+     * Constructor de Usuario.
+     *
+     * @param string $nombre
+     * @param string $email
+     * @param string $pass
+     * @param string $fecha_nacimiento
+     * @param int|null $referido_por
+     * @param string $rol
+     */
 
     public function __construct($nombre, $email, $pass, $fecha_nacimiento, $referido_por = null,$rol = "usuario") {
         $this->nombre = $nombre;
@@ -22,7 +36,12 @@ class Usuario {
          $this->rol = $rol;
         $this->codigo_inv = $this->generarCodigoInv();
     }
-    // Generamos un codigo de inv aleatorio
+      /**
+     * Genera un código de invitación aleatorio.
+     *
+     * @param int $length
+     * @return string
+     */
     private function generarCodigoInv($length = 8){
         $cod = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $codigo = '';
@@ -58,7 +77,12 @@ class Usuario {
     public function getRol() {
         return $this->rol;
     }
-    // Registramos Usuarios
+     /**
+     * Registra al usuario en la base de datos.
+     *
+     * @param PDO $conexion
+     * @return bool
+     */
     public function RegistrarUsuario(PDO $conexion) {
         $hashedPass = password_hash($this->pass, PASSWORD_BCRYPT);
         $consulta = $conexion->prepare(
@@ -81,7 +105,14 @@ class Usuario {
 
         return $resultado;
     }
-    // Iniciamos sesion
+      /**
+     * Inicia sesión si las credenciales son válidas.
+     *
+     * @param PDO $conexion
+     * @param string $pass
+     * @param string $email
+     * @return bool
+     */
     public function IniciarSesion(PDO $conexion, $pass, $email) {
         $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE email = ?");
         $consulta->execute([$email]);
@@ -103,26 +134,53 @@ class Usuario {
             return false;
         }
     }
-    // Obtiene todos los usuarios
+    
+    /**
+     * Obtiene todos los usuarios del sistema.
+     *
+     * @param PDO $conexion
+     * @return array
+     */
     public static function obtenerTodos(PDO $conexion) {
         $consulta = $conexion->query("SELECT id, nombre, email, rol FROM usuarios");
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Cogemos el cod_inv
+       /**
+     * Obtiene el ID del usuario mediante su código de invitación.
+     *
+     * @param PDO $conexion
+     * @param string $codigo
+     * @return int|null
+     */
+
     public static function obtenerIdPorCodigo(PDO $conexion, $codigo){
         $consulta = $conexion->prepare("SELECT id FROM usuarios WHERE codigo_inv = ?");
         $consulta->execute([$codigo]);
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
         return $resultado ? (int)$resultado['id'] : null;
     }
-    // Sumamos puntos al invitar
+     /**
+     * Suma puntos a un usuario.
+     *
+     * @param PDO $conexion
+     * @param int $usuarioId
+     * @param int $cantidad
+     * @return bool
+     */
     public static function sumarPuntos($conexion, $usuarioId, $cantidad) {
         $sql = "UPDATE usuarios SET puntos = puntos + ? WHERE id = ?";
         $stmt = $conexion->prepare($sql);
         return $stmt->execute([$cantidad, $usuarioId]);
     }
-    // Restar puntos 
+     /**
+     * Resta puntos a un usuario si tiene suficientes.
+     *
+     * @param PDO $conexion
+     * @param int $usuarioId
+     * @param int $cantidad
+     * @return bool
+     */
     public static function restarPuntos(PDO $conexion, $usuarioId,$cantidad){
     $sql = "UPDATE usuarios SET puntos = puntos - ? WHERE id = ? AND puntos >= ?";
     $stmt = $conexion->prepare($sql);
@@ -130,6 +188,11 @@ class Usuario {
 }
 
 }
+/**
+ * Clase Producto
+ * 
+ * Representa los productos.
+ */
 class Producto {
     private string $nombre;
     private string $descripcion;
@@ -138,6 +201,17 @@ class Producto {
     private string $imagen;
     private int $stock;
     private int $tipo_id;
+     /**
+     * Constructor de Producto.
+     *
+     * @param string $nombre
+     * @param string $descripcion
+     * @param float $precio
+     * @param int $precio_puntos
+     * @param string $imagen
+     * @param int $stock
+     * @param int $tipo_id
+     */
 
     public function __construct($nombre, $descripcion, $precio, $precio_puntos, $imagen, $stock, $tipo_id) {
         $this->nombre = $nombre;
@@ -149,7 +223,12 @@ class Producto {
         $this->tipo_id = $tipo_id;
     }
 
-    // Guardar un nuevo producto
+     /**
+     * Guarda el producto en la base de datos.
+     *
+     * @param PDO $conexion
+     * @return bool
+     */
     public function guardar(PDO $conexion){
         $consulta = $conexion->prepare("INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) 
                                         VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -216,17 +295,37 @@ class Producto {
 
     // Eliminar producto
     public static function eliminar(PDO $conexion, int $id) {
-        $consulta = $conexion->prepare("DELETE FROM productos WHERE id = ?");
-        return $consulta->execute([$id]);
-    }
+    $sqlDetalle = $conexion->prepare("DELETE FROM detalle_pedido WHERE producto_id = ?");
+    $sqlDetalle->execute([$id]);
+
+    $sqlProducto = $conexion->prepare("DELETE FROM productos WHERE id = ?");
+    return $sqlProducto->execute([$id]);
 }
+
+}
+/**
+ * Clase Pedido
+ * 
+ * Representa un pedido realizado por un usuario.
+ */
 class Pedido {
     private PDO $conexion;
-
+     /**
+     * Constructor de Pedido.
+     *
+     * @param PDO $conexion
+     */
     public function __construct(PDO $conexion) {
         $this->conexion = $conexion;
     }
-
+      /**
+     * Crea un nuevo pedido.
+     *
+     * @param int $usuarioId
+     * @param array $carrito
+     * @param string|null $fecha
+     * @return int
+     */
     public function crearPedido(int $usuarioId, array $carrito, ?string $fecha = null) {
         try {
             $fecha = $fecha ?? date("Y-m-d H:i:s");
@@ -258,7 +357,11 @@ class Pedido {
         return $pedido ?: null;
     }
 }
-
+/**
+ * Clase DetallePedido
+ * 
+ * Representa los productos asociados a un pedido.
+ */
 class DetallePedido {
     private PDO $conexion;
 
@@ -266,7 +369,12 @@ class DetallePedido {
         $this->conexion = $conexion;
     }
 
-    // Guarda todos los productos del carrito como detalles de un pedido
+       /**
+     * Guarda los detalles de un pedido.
+     *
+     * @param int $pedidoId
+     * @param array $carrito
+     */
     public function guardarDetalles(int $pedidoId, array $carrito) {
         $stmt = $this->conexion->prepare(
             "INSERT INTO detalle_pedido (pedido_id, producto_id, cantidad, precio_unitario)
@@ -283,7 +391,12 @@ class DetallePedido {
         }
     }
 
-    // Obtiene todos los detalles de un pedido dado su ID
+    /**
+     * Obtiene los productos de un pedido por su ID.
+     *
+     * @param int $pedidoId
+     * @return array
+     */
     public function obtenerPorPedidoId(int $pedidoId){
         $stmt = $this->conexion->prepare(
             "SELECT dp.*, p.nombre, p.imagen 

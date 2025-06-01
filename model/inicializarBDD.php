@@ -3,24 +3,8 @@
 $host = 'localhost';
 $usuario = 'root';
 $contrasenia = '123';
-// Datos de conexión
-$host = 'localhost';
-$usuario = 'root';
-$contrasenia = '123';
 $nombreBD = 'TFG';
 
-try {
-    // Conectamos al servidor sin especificar base de datos
-    $pdoTemp = new PDO("mysql:host=$host", $usuario, $contrasenia);
-    $pdoTemp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Creamos la base de datos si no existe
-    $sql = "CREATE DATABASE IF NOT EXISTS $nombreBD CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
-    $pdoTemp->exec($sql);
-    $pdoTemp = null; // Cerramos conexión temporal
-} catch (PDOException $e) {
-    die("Error creando la base de datos: " . $e->getMessage());
-}
 try {
     // Conectamos al servidor sin especificar base de datos
     $pdoTemp = new PDO("mysql:host=$host", $usuario, $contrasenia);
@@ -178,10 +162,10 @@ try {
 }
 
 $consultaCafe = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
-('Cápsulas Premium 100% Arábica', 'Cápsulas biodegradables con café arábica de tueste medio.', 8.90, 89, '../images/cafe_capsula1', 50, 2),
-('Cápsulas Intensidad Alta', 'Cápsulas biodegradables con mezcla intensa de granos seleccionados.', 12.50, 125, '../images/cafe_capsula2', 40, 2),
-('Cápsulas Descafeinado Natural', 'Cápsulas biodegradables sin cafeína, sabor suave y equilibrado.', 7.90, 79, '../images/cafe_capsula3', 35, 2),
-('Cápsulas Edición Especial', 'Cápsulas biodegradables con café de origen único en edición limitada.', 10.50, 105, '../images/cafe_capsula4', 20, 2);";
+('Cápsulas Premium 100% Arábica', 'Cápsulas biodegradables con café arábica de tueste medio.', 8.90, 89, '../images/cafe_capsula1.jpg', 50, 2),
+('Cápsulas Intensidad Alta', 'Cápsulas biodegradables con mezcla intensa de granos seleccionados.', 12.50, 125, '../images/cafe_capsula2.jpg', 40, 2),
+('Cápsulas Descafeinado Natural', 'Cápsulas biodegradables sin cafeína, sabor suave y equilibrado.', 7.90, 79, '../images/cafe_capsula3.jpg', 35, 2),
+('Cápsulas Edición Especial', 'Cápsulas biodegradables con café de origen único en edición limitada.', 10.50, 105, '../images/cafe_capsula4.jpg', 20, 2);";
 
 try {
     $pdo->exec($consultaCafe);
@@ -189,7 +173,7 @@ try {
     echo "Error al insertar productos de café: " . $e->getMessage();
 }
 $consultaPacks = "INSERT INTO productos (nombre, descripcion, precio, precio_puntos, imagen, stock, tipo_id) VALUES
-('Pack Degustación x4', 'Incluye 4 variedades de café en sobres de 50g.', 16.00, 160, '../images/pack_degusta.jpg', 20, 3),
+('Pack Degustación x4', 'Incluye 4 capsulas de café ', 1.50, 100, '../images/pack_degusta.jpg', 20, 3),
 ('Pack Cápsulas Intenso x10', 'Cápsulas compatibles con Nespresso.', 6.50, 65, '../images/pack_capsulas.jpg', 30, 3),
 ('Pack Inicio Barista', 'Taza + café molido + guía barista.', 22.00, 220, '../images/pack_barista.jpg', 15, 3),
 ('Pack Regalo Café Lover', 'Caja de regalo con tazas, café y accesorios.', 30.00, 300, '../images/pack_regalo.jpg', 10, 3);";
