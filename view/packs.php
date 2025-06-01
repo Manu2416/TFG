@@ -39,7 +39,7 @@ if (isset($_GET['add'])) {
     exit;
 }
 
-// Mostrar mensaje si viene el parámetro added=1
+// Mostrar mensaje si viene el parámetro 
 if (isset($_GET['added']) && $_GET['added'] == 1) {
     $mensaje = 'Producto añadido al carrito.';
 }
@@ -52,7 +52,7 @@ $productos = Producto::obtenerAccesorios($conexion);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Packs </title>
     <!-- Estilos propios -->
     <link href="../styles/footer.css" rel="stylesheet">
     <link href="../styles/navbar.css" rel="stylesheet">

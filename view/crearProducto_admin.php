@@ -7,7 +7,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Crear Producto</title>
+     <!-- Estilos propios -->
     <link href="../styles/body.css" rel="stylesheet">
+    <!-- Bootstrap y Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>

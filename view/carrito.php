@@ -9,10 +9,12 @@ $carrito = $_SESSION['carrito'] ?? [];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carrito de Compras</title>
+   <!-- Estilos propios -->
   <link href="../styles/footer.css" rel="stylesheet" />
   <link href="../styles/navbar.css" rel="stylesheet" />
   <link href="../styles/body.css" rel="stylesheet" />
-   <link href="../styles/carrito.css" rel="stylesheet" />
+  <link href="../styles/carrito.css" rel="stylesheet" />
+  <!-- Bootstrap y Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>

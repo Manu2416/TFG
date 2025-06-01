@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verifica que haya sesión y que sea administrador
+// Verificacion  que haya sesión y que sea administrador
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'admin') {
     header("Location: ../index.php");
     exit;
@@ -18,9 +18,8 @@ require_once "../model/conexion.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Tus estilos -->
+    <!-- Estilos propios -->
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/body.css">
 </head>

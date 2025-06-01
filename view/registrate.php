@@ -5,7 +5,7 @@ session_start();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro | Ecoffe</title>
+    <title>Registro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Estilos propios -->

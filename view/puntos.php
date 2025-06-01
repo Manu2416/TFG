@@ -17,12 +17,13 @@ $puntos = $_SESSION['usuario']['puntos'] ?? 0;
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ecoffe - Productos</title>
-    <!-- Aquí van tus estilos y links -->
+    <title>Premios</title>
+     <!-- Estilos propios -->
     <link href="../styles/footer.css" rel="stylesheet" />
     <link href="../styles/navbar.css" rel="stylesheet" />
     <link href="../styles/body.css" rel="stylesheet" />
     <link href="../styles/productos.css" rel="stylesheet" />
+      <!-- Bootstrap y Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
